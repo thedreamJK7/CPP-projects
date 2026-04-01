@@ -15,7 +15,6 @@ class PhoneBook
 		int					_numContacts;
 
 		void				display_phonebook();
-		void				display_all_info(int index);
 		void				display_contact(int index);
 		std::string			truncate(const std::string& str);
 

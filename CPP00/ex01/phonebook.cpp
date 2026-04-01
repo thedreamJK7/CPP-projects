@@ -9,12 +9,14 @@ PhoneBook::~PhoneBook() {};
 
 void PhoneBook::display_contact(int index)
 {
+	const size_t DisplayWidth = 10;
+
 	std::cout << "|         " << index + 1;
-	std::cout << "|" << std::setw(10)
+	std::cout << "|" << std::setw(DisplayWidth)
             << truncate(contacts[index].get_f_name());
-	std::cout << "|" << std::setw(10)
+	std::cout << "|" << std::setw(DisplayWidth)
             << truncate(contacts[index].get_l_name());
-	std::cout << "|" << std::setw(10)
+	std::cout << "|" << std::setw(DisplayWidth)
             << truncate(contacts[index].get_n_name()) << "|" << std::endl;
 }
 
