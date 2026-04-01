@@ -1,8 +1,11 @@
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
 
+#include <iostream>
+#include <iomanip>
 #include <string>
 
+// A class representing a Contact with personal information.
 class Contact
 {
 	private:
@@ -16,16 +19,22 @@ class Contact
 		Contact();
 		~Contact();
 
-		void set_f_name(std::string v);
-		void set_l_name(std::string v);
-		void set_n_name(std::string v);
-		void set_p_number(std::string v);
-		void set_d_secret(std::string v);
-		std::string get_f_name() const;
-		std::string get_l_name() const;
-		std::string get_n_name() const;
-		std::string get_p_number() const;
-		std::string get_d_secret() const;
+		// setters (pass by const ref to avoid copies)
+		void set_f_name(const std::string& v) { first_name = v;};
+		void set_l_name(const std::string& v) { last_name = v; };
+		void set_n_name(const std::string& v) { nick_name = v; };
+		void set_p_number(const std::string& v) { phone_number = v; };
+		void set_d_secret(const std::string& v) { darkest_secret = v; };
+
+		// getters (returning const ref avoids copies)
+		const std::string& get_f_name() const {return first_name; };
+		const std::string& get_l_name() const { return last_name; };
+		const std::string& get_n_name() const { return nick_name; };
+		const std::string& get_p_number() const { return phone_number; };
+		const std::string& get_d_secret() const { return darkest_secret; };
+
+		void set_contact();
+		void display_all_info();
 };
 
 
