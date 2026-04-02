@@ -20,18 +20,18 @@ class Contact
 		~Contact();
 
 		// setters (pass by const ref to avoid copies)
-		void set_f_name(const std::string& v) { first_name = v;};
-		void set_l_name(const std::string& v) { last_name = v; };
-		void set_n_name(const std::string& v) { nick_name = v; };
-		void set_p_number(const std::string& v) { phone_number = v; };
-		void set_d_secret(const std::string& v) { darkest_secret = v; };
+		void set_f_name(const std::string& v);
+		void set_l_name(const std::string& v);
+		void set_n_name(const std::string& v);
+		void set_p_number(const std::string& v);
+		void set_d_secret(const std::string& v);
 
 		// getters (returning const ref avoids copies)
-		const std::string& get_f_name() const {return first_name; };
-		const std::string& get_l_name() const { return last_name; };
-		const std::string& get_n_name() const { return nick_name; };
-		const std::string& get_p_number() const { return phone_number; };
-		const std::string& get_d_secret() const { return darkest_secret; };
+		const std::string& get_f_name() const;
+		const std::string& get_l_name() const;
+		const std::string& get_n_name() const;
+		const std::string& get_p_number() const;
+		const std::string& get_d_secret() const;
 
 		void set_contact();
 		void display_all_info();
