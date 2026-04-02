@@ -2,11 +2,11 @@
 
 int main()
 {
-	Zombie *Zombie;
+	Zombie *zombie;
 
-	Zombie = newZombie("Foo1");
-	Zombie->announce();
+	zombie = newZombie("Foo1");
+	zombie->announce();
 	randomChump("Foo2");
-	delete Zombie;
+	delete zombie;
 	return (0);
 }

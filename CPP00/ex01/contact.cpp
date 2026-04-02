@@ -7,18 +7,18 @@
 Contact::Contact() {};
 Contact::~Contact() {};
 
-void Contact::set_f_name(const std::string& v) { first_name = v;};
-void Contact::set_l_name(const std::string& v) { last_name = v; };
-void Contact::set_n_name(const std::string& v) { nick_name = v; };
-void Contact::set_p_number(const std::string& v) { phone_number = v; };
-void Contact::set_d_secret(const std::string& v) { darkest_secret = v; };
+void Contact::set_f_name(const std::string& v) { first_name = v;}
+void Contact::set_l_name(const std::string& v) { last_name = v; }
+void Contact::set_n_name(const std::string& v) { nick_name = v; }
+void Contact::set_p_number(const std::string& v) { phone_number = v; }
+void Contact::set_d_secret(const std::string& v) { darkest_secret = v; }
 
 // getters (returning const ref avoids copies)
-const std::string& Contact::get_f_name() const {return first_name; };
-const std::string& Contact::get_l_name() const { return last_name; };
-const std::string& Contact::get_n_name() const { return nick_name; };
-const std::string& Contact::get_p_number() const { return phone_number; };
-const std::string& Contact::get_d_secret() const { return darkest_secret; };
+const std::string& Contact::get_f_name() const {return first_name; }
+const std::string& Contact::get_l_name() const { return last_name; }
+const std::string& Contact::get_n_name() const { return nick_name; }
+const std::string& Contact::get_p_number() const { return phone_number; }
+const std::string& Contact::get_d_secret() const { return darkest_secret; }
 
 void Contact::set_contact()
 {

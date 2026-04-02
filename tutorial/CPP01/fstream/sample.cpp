@@ -4,8 +4,8 @@
 int main()
 {
 	std::ifstream	ifs("numbers");
-	unsigned	int	dst;
-	unsigned	int	dst2;
+	unsigned	int	dst = 1;
+	unsigned	int	dst2 = 2;
 	ifs >> dst >> dst2;
 
 	// reads from the file
