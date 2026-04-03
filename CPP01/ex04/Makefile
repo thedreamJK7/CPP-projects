@@ -2,7 +2,7 @@ NAME 		= sed
 CPP			= c++
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g
 RM 			= rm -f
-SRC 		= main.cpp
+SRC 		= helper.cpp main.cpp
 OBJ 		= $(SRC:.cpp=.o)
 
 all: $(NAME)
