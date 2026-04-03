@@ -17,7 +17,7 @@ std::string readFile(const std::string &filename)
 	if (!ifs)
 	{
 		std::cerr << "Error: Unable to open file `" << filename << "`." << std::endl;
-		return {};
+		return (std::string());
 	}
 	ss << ifs.rdbuf();
 	str = ss.str();

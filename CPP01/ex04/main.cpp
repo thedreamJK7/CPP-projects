@@ -16,10 +16,14 @@ int main(int argc, char *argv[])
 
 	std::string content = readFile(filename);
     if (content.empty())
+	{
         return (1);
+	}
 	
 	std::string modifiedContent = replaceString(content, searchString, replaceStringArg);
     if (!writeFile(modifiedContent, filename))
+	{
         return 1;
+	}
 	return (0);
 }
