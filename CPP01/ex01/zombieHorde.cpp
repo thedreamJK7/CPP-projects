@@ -2,12 +2,12 @@
 
 Zombie* zombieHorde( int N, std::string name )
 {
-	Zombie *zombieHorde;
+	Zombie *zombies;
 
-	zombieHorde = new Zombie[N];
+	zombies = new Zombie[N];
 	for (int i = 0; i < N; i++)
 	{
-		zombieHorde[i] = Zombie(name);
+		zombies[i] = Zombie(name);
 	}
-	return (zombieHorde);
+	return (zombies);
 }
