@@ -1,6 +1,6 @@
 NAME 		= sed
 CPP			= c++
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -g
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
 RM 			= rm -f
 SRC 		= helper.cpp main.cpp
 OBJ 		= $(SRC:.cpp=.o)

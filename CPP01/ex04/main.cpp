@@ -2,8 +2,6 @@
 
 int main(int argc, char *argv[])
 {
-	std::string	str;
-
 	if (argc != 4)
 		return (printUsage(), 1);
 
@@ -19,7 +17,7 @@ int main(int argc, char *argv[])
 	{
         return (1);
 	}
-	
+
 	std::string modifiedContent = replaceString(content, searchString, replaceStringArg);
     if (!writeFile(modifiedContent, filename))
 	{

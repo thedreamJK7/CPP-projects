@@ -54,10 +54,10 @@ bool writeFile(const std::string &modifiedContent, const std::string &filename)
 	std::string fname = std::string(filename) + ".replace";
 	std::ofstream outFile(fname.c_str());
 	if (!outFile)
-		return (std::cout << "Failed to create output file" << std::endl, 1);
+		return (std::cout << "Failed to create output file" << std::endl, false);
 	outFile << modifiedContent << std::endl;
 	outFile.close();
-	return (0);
+	return (true);
 }
 
 void printUsage()
