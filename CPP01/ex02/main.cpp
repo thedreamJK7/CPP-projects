@@ -4,7 +4,7 @@
 int main()
 {
 	std::string	str;
-	std::string	*stringPTR;
+	std::string	*stringPTR = &str;
 	std::string &stringREF = str;
 
 	str = "HI THIS IS BRAIN";
@@ -14,7 +14,7 @@ int main()
 	std::cout << "The memory address held by stringREF: " << &stringREF << std::endl;
 	
 	std::cout << "The value of the string variable: " << str << std::endl;
-	std::cout << "The value pointed to by stringPTR: " << stringPTR << std::endl;
+	std::cout << "The value pointed to by stringPTR: " << *stringPTR << std::endl;
 	std::cout << "The value pointed to by stringREF: " << stringREF << std::endl;
 	return (0);
 }
