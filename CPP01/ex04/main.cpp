@@ -20,7 +20,7 @@ std::string readFile(std::string filename)
 	if (!ifs)
 	{
 		std::cout << "There is no such file exist" << std::endl;
-		return (NULL);
+		return (std::string());
 	}
 	ss << ifs.rdbuf();
 	str = ss.str();
@@ -51,10 +51,26 @@ std::string replaceString(std::string str, std::string s1, std::string s2)
 	return (result);
 }
 
+bool writeFile(std::string str, std::string filename, std::string s1, std::string s2)
+{
+	std::string	result;
+
+	result = replaceString(str, s1, s2);
+	std::string fname = std::string(filename) + ".replace";
+	std::ofstream outFile(fname.c_str());
+	if (!outFile)
+	{
+		std::cout << "Failed to create output file" << std::endl;
+		return (1);
+	}
+	outFile << result << std::endl;
+	outFile.close();
+	return (0);
+}
+
 int main(int argc, char *argv[])
 {
 	std::string	str;
-	std::string	result;
 
 	if (argc != 4 || std::string(argv[2]).empty() || std::string(argv[3]).empty())
 	{
@@ -64,9 +80,7 @@ int main(int argc, char *argv[])
 	str = readFile(argv[1]);
 	if (str.empty())
 		return (1);
-	result = replaceString(str, argv[2], argv[3]);
-	std::string filename = "filename.txt";
-	std::ofstream outFile("filename.txt");
-	outFile << str << std::endl;
+	if (!writeFile(str, argv[1], argv[2], argv[3]))
+		return (1);
 	return (0);
 }
