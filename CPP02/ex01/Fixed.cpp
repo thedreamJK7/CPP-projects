@@ -5,12 +5,12 @@ Fixed::Fixed(void): _value(0)
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const int i): _value(i)
+Fixed::Fixed(const int i): _value(i << _fractionalBits)
 {
 	std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float f): _value(f)
+Fixed::Fixed(const float f): _value(roundf(f * 256))
 {
 	std::cout << "Float constructor called" << std::endl;
 }
@@ -52,18 +52,16 @@ int	Fixed::getRawBits( void ) const
 
 float	Fixed::toFloat( void ) const
 {
-	return (this->_value / (256));
+	return (this->_value / 256.0f);
 }
 
 int		Fixed::toInt( void ) const
 {
-	return (this->_value / (256));
+	return (this->_value >> _fractionalBits);
 }
 
 std::ostream & operator<<(std::ostream & o, Fixed const & rhs)
 {
-	o << rhs.getRawBits();
+	o << rhs.toFloat();
 	return (o);
 }
-
-static const int _fractionalBits = 8;

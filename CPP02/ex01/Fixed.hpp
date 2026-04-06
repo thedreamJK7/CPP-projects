@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <string>
+# include <cmath>
 
 class Fixed
 {
@@ -23,7 +24,7 @@ class Fixed
 	private:
 
 		int					_value;
-		static const	int	_fractionalBits;
+		static const	int	_fractionalBits = 8;
 };
 
 std::ostream & operator << (std::ostream & o, Fixed const & rhs);
