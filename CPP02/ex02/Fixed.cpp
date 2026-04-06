@@ -4,17 +4,14 @@
 
 Fixed::Fixed(void): _value(0)
 {
-	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const int i): _value(i << _fractionalBits)
 {
-	std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float f): _value(roundf(f * (1 << _fractionalBits)))
 {
-	std::cout << "Float constructor called" << std::endl;
 }
 
 /*
@@ -22,7 +19,6 @@ copy constructor → calls operator= → copies value
 */
 Fixed::Fixed(Fixed const &src)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 }
 
@@ -30,7 +26,6 @@ Fixed::Fixed(Fixed const &src)
 
 Fixed::~Fixed(void)
 {
-	std::cout << "Destructor called" << std::endl;
 }
 
 // ==================== Accessors ==========================
@@ -42,7 +37,6 @@ void Fixed::setRawBits( int const raw )
 
 int	Fixed::getRawBits( void ) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_value);
 }
 
@@ -70,8 +64,6 @@ std::ostream & operator<<(std::ostream & o, Fixed const & rhs)
 
 Fixed & Fixed::operator = (Fixed const & rhs)
 {
-	std::cout << "Copy assignment operator called " << std::endl;
-	
 	if (this != &rhs)
 		this->_value = rhs.getRawBits();
 	
@@ -134,7 +126,7 @@ Fixed	Fixed::operator * (Fixed const & rhs)
 {
 	Fixed	result;
 
-	result.setRawBits((this->getRawBits() * rhs.getRawBits()) >> _fractionalBits);
+	result.setRawBits((this->getRawBits() * long(rhs.getRawBits())) >> _fractionalBits);
 
 	return result;
 }
@@ -146,7 +138,7 @@ Fixed	Fixed::operator / (Fixed const & rhs)
 	if (rhs.getRawBits() == 0)
 		return (Fixed(0));
 	
-	result.setRawBits((this->getRawBits() >> _fractionalBits) / rhs.getRawBits());
+	result.setRawBits((long(this->getRawBits()) >> _fractionalBits) / rhs.getRawBits());
 
 	return result;
 }
@@ -187,7 +179,7 @@ Fixed	Fixed::operator -- (int)
 
 Fixed	&Fixed::min(Fixed &fixed1, Fixed &fixed2)
 {
-	if (fixed1.getRawBits() < fixed2.getRawBits())
+	if (fixed1._value < fixed2._value)
 		return fixed1;
 	
 	return fixed2;
@@ -195,7 +187,7 @@ Fixed	&Fixed::min(Fixed &fixed1, Fixed &fixed2)
 
 const Fixed	&Fixed::min(const Fixed &fixed1, const Fixed &fixed2)
 {
-	if (fixed1.getRawBits() < fixed2.getRawBits())
+	if (fixed1._value < fixed2._value)
 		return fixed1;
 	
 	return fixed2;
