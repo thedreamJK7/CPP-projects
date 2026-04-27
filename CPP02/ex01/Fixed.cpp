@@ -5,11 +5,13 @@ Fixed::Fixed(void): _value(0)
 	std::cout << "Default constructor called" << std::endl;
 }
 
+// i * 256
 Fixed::Fixed(const int i): _value(i << _fractionalBits)
 {
 	std::cout << "Int constructor called" << std::endl;
 }
 
+// f * 256
 Fixed::Fixed(const float f): _value(roundf(f * (1 << _fractionalBits)))
 {
 	std::cout << "Float constructor called" << std::endl;
@@ -46,15 +48,15 @@ void Fixed::setRawBits( int const raw )
 
 int	Fixed::getRawBits( void ) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_value);
 }
-
+// value / 256
 float	Fixed::toFloat( void ) const
 {
 	return (this->_value / (float)(1 << _fractionalBits));
 }
 
+// value / 256
 int		Fixed::toInt( void ) const
 {
 	return (this->_value >> _fractionalBits);

@@ -1,5 +1,11 @@
 #include "Zombie.hpp"
 
+/*
+In this ex, the goal is to allocate N zombies in a single allocation. this is a 
+concept which shows the difference between creating one object and creating an entire
+array of them at once
+*/
+
 int main()
 {
 	Zombie	*zombie;

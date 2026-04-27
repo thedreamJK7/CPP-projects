@@ -4,6 +4,16 @@
 #include <iostream>
 #include <string>
 
+/*
+
+Defining the zombie class, the class has a private attribute _name, which stores
+the name of the zombie, ensuring encapsulation(qobiqqa orash, himoyalash)
+
+why is _name private:
+To enforce encapsulation. It prevents direct modification from outside the class
+ and ensures controlled access through member functions.
+*/
+
 class Zombie
 {
 	private:
