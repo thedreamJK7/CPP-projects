@@ -24,17 +24,6 @@ int main()
 		meowmeow.scornTarget("Dog");
 	}
 
-	{
-		std::cout << "Test2, creating the cat object" << std::endl;
-		Cat meowmeow;
-
-		std::cout << "Test2, calling the inherited methods " << std::endl;
-		meowmeow.eat("Elephant");
-		meowmeow.run(25);
-
-		std::cout << "Test2, Calling cat specified methods" << std::endl;
-		meowmeow.scornTarget("Dog");
-	}
 
 	{
 		std::cout << "Test3, creating an original object" << std::endl;

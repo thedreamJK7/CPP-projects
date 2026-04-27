@@ -9,7 +9,9 @@ Cat::Cat(): Animal()
 }
 
 // Destructor
-// We first need to destruct the child then parent because without parent child cant work good functionally
+// In C++, the derived destructor runs first, and then the base class destructor
+// is called automatically. A virtual base destructor matters when deleting
+// derived objects through base-class pointers.
 Cat::~Cat()
 {
 	std::cout << "Cat destructed" << std::endl;
