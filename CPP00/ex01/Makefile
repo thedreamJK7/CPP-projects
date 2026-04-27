@@ -1,4 +1,4 @@
-NAME = pohonebook
+NAME			= phonebook
 CPP				= c++
 CPPFLAGS		= -Wall -Wextra -Werror -std=c++98
 RM = rm -f
