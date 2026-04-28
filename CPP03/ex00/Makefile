@@ -1,19 +1,25 @@
 NAME 		= ex00
 CPP			= c++
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
-RM 			= rm -f
-SRC 		= Fixed.cpp main.cpp
-OBJ 		= $(SRC:.cpp=.o)
+RM 			= rm -rf
+SRC 		= src/main.cpp src/ClapTrap.cpp
+
+OBJ_DIR 		= ./obj
+OBJS = $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRC))
 
 all: $(NAME)
-$(NAME): $(OBJ)
-	$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.cpp
+$(OBJ_DIR):
+	$(MKDIR) $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o: %.cpp
+	@mkdir -p $(dir $@)
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
