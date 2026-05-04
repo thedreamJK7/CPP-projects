@@ -46,17 +46,19 @@ hitPoints → damage olganda kamayadi, repairda oshadi
 */
 void ClapTrap::attack(const std::string& target)
 {
-	if (this->_hitPoints && this->_energyPoints)
+	if (!(this->_hitPoints && this->_energyPoints))
 	{
 		std::cout << "ClapTrap " << this->_name << " can't attack\n";
 		return;
 	}
-
+	else
+	{
     this->_energyPoints--;
 	std::cout	<< "ClapTrap " << this->_name 
 				<< " attacks " << target 
 				<< ", causing " << this->_attackDamage 
 				<< " points of damage!" << std::endl;
+	}
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -83,7 +85,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->_energyPoints && this->_energyPoints)
+	if (!(this->_energyPoints && this->_energyPoints))
 	{
 		std::cout << "ClapTrap " << this->_name << " can't be repaired!" << std::endl;
 	}
