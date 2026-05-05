@@ -20,9 +20,9 @@ ScavTrap::ScavTrap(std::string const & name)
 
 // Copy constructor
 ScavTrap::ScavTrap(ScavTrap const & src)
+	: ClapTrap(src)
 {
 	std::cout << "(ScavTrap)Copy constructor called!" << std::endl;
-	*this = src;
 }
 
 // Assignment operator
@@ -31,10 +31,7 @@ ScavTrap &ScavTrap::operator=(ScavTrap const &src)
 	std::cout << "Assignment operator called" << std::endl;
 	if (this != &src)
 	{
-		this->_name = src._name;
-		this->_attackDamage = src._attackDamage;
-		this->_energyPoints = src._energyPoints;
-		this->_hitPoints = src._hitPoints;
+		ClapTrap::operator=(src);
 	}
 	return (*this);
 }
