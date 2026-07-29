@@ -9,10 +9,10 @@ class Animal {
 		int	_numOfLegs;
 	
 	public:
-		Animal();
-		Animal(Animal const &src);
-		Animal& operator=(Animal const &src);
-		~Animal();
+		Animal(); // constructor
+		Animal(Animal const &src); // copy constructor, it is calling the assignment operator internally which is why it is copy all the data from src to new object
+		Animal& operator=(Animal const &src); // assignment operator
+		~Animal(); // destructor
 
 		void	run(int	distance);
 		void	call();
