@@ -10,6 +10,7 @@ Sample::Sample(int const n): _foo(n)
 	std::cout << "Parametrised constructor called" << std::endl;
 }
 
+// function copies values of the src object to new objects. Bothe of them are gonna be independent
 Sample::Sample(Sample const &src)
 {
 	std::cout << "Copy constructor called" << std::endl;
