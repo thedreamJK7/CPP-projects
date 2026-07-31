@@ -1,7 +1,5 @@
 #include "../includes/Animal.hpp"
 
-
-
 Animal::Animal(): type("Generic")
 {
 	std::cout << "(Animal)Default constructor called" << std::endl;
@@ -33,4 +31,10 @@ Animal::~Animal()
 	std::cout << "(Animal)Destructor called" << std::endl;
 }
 
+const std::string& Animal::getType() const { return type; };
+
+void	Animal::makeSound(void) const
+{
+	std::cout << "(Generic)Animal makes sound!" << std::endl;
+}
 
