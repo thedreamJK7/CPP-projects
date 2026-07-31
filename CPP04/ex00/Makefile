@@ -2,7 +2,8 @@ NAME 		= ex00
 CPP			= c++
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
 RM 			= rm -rf
-SRC 		= src/main.cpp src/Animal.cpp src/Dog.cpp src/Cat.cpp src/WrongAnimal.cpp src/WrongCat.cpp
+SRC 		= src/main.cpp src/Animal.cpp src/Dog.cpp src/Cat.cpp \
+				src/WrongAnimal.cpp src/WrongCat.cpp
 
 OBJ_DIR 		= ./obj
 OBJS = $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRC))
