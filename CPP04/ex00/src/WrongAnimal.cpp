@@ -5,15 +5,14 @@ WrongAnimal::WrongAnimal(): type("Generic")
 	std::cout << "(WrongAnimal)Default constructor called" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(std::string const & name): type(name)
+WrongAnimal::WrongAnimal(std::string const & type): type(type)
 {
 	std::cout << "(WrongAnimal)Parametrised constructor called" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(WrongAnimal const & src)
+WrongAnimal::WrongAnimal(WrongAnimal const & src): type(src.type)
 {
 	std::cout << "(WrongAnimal)Copy constructor called!" << std::endl;
-	*this = src;
 }
 
 WrongAnimal &WrongAnimal::operator=(WrongAnimal const &src)

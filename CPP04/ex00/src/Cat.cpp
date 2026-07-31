@@ -13,14 +13,13 @@ Cat::Cat(std::string const & type): Animal(type)
 Cat::Cat(Cat const & src): Animal(src)
 {
 	std::cout << "(Cat)Copy constructor called!" << std::endl;
-	*this = src;
 }
 
 Cat &Cat::operator=(Cat const &src)
 {
 	std::cout << "(Cat)Assignment operator called" << std::endl;
 	if (this != &src)
-		this->type = src.type;
+		Animal::operator=(src);
 	return (*this);
 }
 

@@ -13,14 +13,13 @@ WrongCat::WrongCat(std::string const & type): WrongAnimal(type)
 WrongCat::WrongCat(WrongCat const & src): WrongAnimal(src)
 {
 	std::cout << "(WrongCat)Copy constructor called!" << std::endl;
-	*this = src;
 }
 
 WrongCat &WrongCat::operator=(WrongCat const &src)
 {
 	std::cout << "(WrongCat)Assignment operator called" << std::endl;
 	if (this != &src)
-		this->type = src.type;
+		WrongAnimal::operator=(src);
 	return (*this);
 }
 
