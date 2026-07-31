@@ -15,6 +15,7 @@ Dog::Dog(std::string const & type): Animal(type)
 Dog::Dog(Dog const & src): Animal(src)
 {
 	std::cout << "(Dog)Copy constructor called!" << std::endl;
+	_brain = new Brain(*src._brain);
 }
 
 Dog &Dog::operator=(Dog const &src)
