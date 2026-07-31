@@ -1,21 +1,13 @@
 #include "../includes/Cat.hpp"
 
-Cat::Cat(): Animal()
+Cat::Cat(): Animal("Cat"), _brain(new Brain())
 {
-	_brain = new Brain;
 	std::cout << "(Cat)Default constructor called" << std::endl;
 }
 
-Cat::Cat(std::string const & type): Animal(type)
-{
-	_brain = new Brain;
-	std::cout << "(Cat)Parametrised constructor called" << std::endl;
-}
-
-Cat::Cat(Cat const & src): Animal(src)
+Cat::Cat(Cat const & src): Animal(src), _brain(new Brain(*src._brain))
 {
 	std::cout << "(Cat)Copy constructor called!" << std::endl;
-	_brain = new Brain(*src._brain);
 }
 
 Cat &Cat::operator=(Cat const &src)
