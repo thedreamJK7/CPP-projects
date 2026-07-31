@@ -1,13 +1,8 @@
 #include "../includes/Cat.hpp"
 
-Cat::Cat(): Animal()
+Cat::Cat(): Animal("Cat")
 {
 	std::cout << "(Cat)Default constructor called" << std::endl;
-}
-
-Cat::Cat(std::string const & type): Animal(type)
-{
-	std::cout << "(Cat)Parametrised constructor called" << std::endl;
 }
 
 Cat::Cat(Cat const & src): Animal(src)
