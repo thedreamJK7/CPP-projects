@@ -14,6 +14,7 @@ int main()
 
         a.beRepaired(5);
     }
+
     {
         ClapTrap	trapA("Hugo Boss");
         ClapTrap	trapB("John Dirty");
