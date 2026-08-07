@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <exception>
 
 class Bureaucrat
 {
@@ -31,7 +32,7 @@ class Bureaucrat
 		// Increment, decrement
 		void	incrementGrade();
 		void	decrementGrade();
-		
+
 	private:
 		const std::string	_name;
 		int					_grade;

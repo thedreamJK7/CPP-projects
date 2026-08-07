@@ -35,9 +35,9 @@ int main(void)
 			std::cout << employee0 << std::endl;
 			Bureaucrat employee1("too low", 151);
 			Bureaucrat employee2("too high", -1);
-		} catch (Bureaucrat::GradeTooLowException &e) {
+		} catch (const Bureaucrat::GradeTooLowException &e) {
 			std::cerr << e.what() << std::endl;
-		} catch (Bureaucrat::GradeTooHighException &e) {
+		} catch (const Bureaucrat::GradeTooHighException &e) {
 			std::cerr << e.what() << std::endl;
 		}
 	}
