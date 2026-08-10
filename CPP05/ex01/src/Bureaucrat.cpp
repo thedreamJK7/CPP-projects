@@ -22,7 +22,7 @@ Bureaucrat::Bureaucrat(const std::string & name, int grade)
 	_grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat & rhs): _grade(rhs._grade), _name(rhs._name)
+Bureaucrat::Bureaucrat(const Bureaucrat & rhs): _name(rhs._name), _grade(rhs._grade)
 { }
 
 Bureaucrat & Bureaucrat::operator=(const Bureaucrat &rhs)
@@ -65,4 +65,21 @@ std::ostream	&operator<<(std::ostream &os, const Bureaucrat &member)
 {
 	os << member.getName() << ", bureaucrat grade " << member.getGrade();
 	return (os);
+}
+
+void	Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout	<< this->_name		<<	" signed "
+				<< form.getName ()	<< "."
+				<< std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout	<< _name		<<	" couldn’t sign "
+					<< form.getName ()	<< " because grade too low."
+					<< std::endl;	
+	}
 }
