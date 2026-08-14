@@ -37,6 +37,18 @@ class AForm
 			virtual const char *what() const throw ();
 	};
 
+	class FileNotOpenedException: public std::exception
+	{
+		public:
+			virtual const char *what() const throw ();
+	};
+
+	class FileNotSignedException: public std::exception
+	{
+		public:
+			virtual const char *what() const throw ();
+	};
+
 	// member functions
 	void	beSigned(const Bureaucrat &bureaucrat);
 
