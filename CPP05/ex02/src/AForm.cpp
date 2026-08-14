@@ -13,6 +13,9 @@ const char *AForm::GradeTooLowException::what() const throw()
 			"it has to be higher than 0 and smaller/equal to 150!";
 }
 
+AForm::AForm()
+    : _name("Generic"), _isSigned(false), _gradeToSign(150), _gradeToExecute(150) {}
+
 //constructor
 AForm::AForm(const std::string & name, 
 		const int & gradeToSign, const int & gradeToExecute)
