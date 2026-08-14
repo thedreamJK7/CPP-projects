@@ -3,44 +3,40 @@
 
 int main(void)
 {
-	{
-		// too low / high form grade
-		try {
-			Form form("vip-form", 151, 1);
-		} catch (std::exception &e) {
-			std::cerr << e.what() << std::endl;
-		}
-		try {
-			Form form("vip-form", 1, -1);
-		} catch (std::exception &e) {
-			std::cerr << e.what() << std::endl;
-		}
+	std::cout << "\nTEST 1: The CEO (Grade 1)" << std::endl;
+  {
+//     try {
+//       Bureaucrat Bert("Bert", 1);
+//       ShrubberyCreationForm shrubbery("Shrubbery");
+//       Bert.signAForm(shrubbery);
+//       Bert.executeForm(shrubbery);
+//       RobotomyRequestForm robotomy("Robotomy");
+//       Bert.signAForm(robotomy);
+//       Bert.executeForm(robotomy);
+//       PresidentialPardonForm pardon("Person");
+//       Bert.signAForm(pardon);
+//       Bert.executeForm(pardon);
+//     } catch (std::exception &e) {
+//       std::cerr << e.what() << std::endl;
+//     }
+//   }
+//   std::cout << "\nTEST 2: The Employee (Grade 150)" << std::endl;
+//   {
+//     try {
+//       Bureaucrat Bert("Bert", 150);
+//       ShrubberyCreationForm shrubbery("Shrubbery");
+//       Bert.signAForm(shrubbery);
+//       Bert.executeForm(shrubbery);
+//       RobotomyRequestForm robotomy("Robotomy");
+//       Bert.signAForm(robotomy);
+//       Bert.executeForm(robotomy);
+//       PresidentialPardonForm pardon("Person");
+//       Bert.signAForm(pardon);
+//       Bert.executeForm(pardon);
 
-		// correct form construction
-		Form form1("low-form", 150, 150);
-		Form form2("vip-form", 1, 1);
-		std::cout << form1 << std::endl;
-		std::cout << form2 << std::endl;
-
-		// signing forms
-		try {
-			Bureaucrat employee0("test", 150);
-			employee0.signForm(form1);
-			employee0.signForm(form2);
-			std::cout << employee0 << std::endl;
-		} catch (std::exception &e) {
-			std::cerr << e.what() << std::endl;
-		}
-		try {
-			Bureaucrat employee2("too high", -1);
-		} catch (std::exception &e) {
-			std::cerr << e.what() << std::endl;
-		}
-		try {
-			Bureaucrat employee1("too low", 151);
-		} catch (std::exception &e) {
-			std::cerr << e.what() << std::endl;
-		}
-	}
+//     } catch (std::exception &e) {
+//       std::cerr << e.what() << std::endl;
+//     }
+//   }
 	return 0;
 }

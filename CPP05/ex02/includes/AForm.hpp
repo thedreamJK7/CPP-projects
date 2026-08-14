@@ -11,6 +11,7 @@ class Bureaucrat;
 class AForm
 {
 	public:
+	AForm();
 	AForm(const std::string & name, 
 		const int & gradeToSign, const int & gradeToExecute); // constructor
 	AForm (AForm const &rhs); // copy constructor
@@ -38,6 +39,8 @@ class AForm
 
 	// member functions
 	void	beSigned(const Bureaucrat &bureaucrat);
+
+	virtual void execute(Bureaucrat const & executor) const = 0;
 
 	private:
 		const std::string	_name;
