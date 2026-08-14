@@ -6,7 +6,7 @@
 #include <exception>
 #include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -38,6 +38,7 @@ class Bureaucrat
 
 		// member function
 		void	signForm(AForm &form);
+		void	executeForm(AForm const & form);
 
 	private:
 		const std::string	_name;

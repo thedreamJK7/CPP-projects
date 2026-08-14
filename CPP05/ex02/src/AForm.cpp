@@ -1,18 +1,5 @@
 #include "../includes/AForm.hpp"
 
-// Exceptions
-const char *AForm::GradeTooHighException::what() const throw()
-{
-	return	"Grade too HIGH:\n"
-			"it has to be higher than 0 and smaller/equal to 150!";
-}
-
-const char *AForm::GradeTooLowException::what() const throw()
-{
-	return	"Grade too LOW:\n"
-			"it has to be higher than 0 and smaller/equal to 150!";
-}
-
 AForm::AForm()
     : _name("Generic"), _isSigned(false), _gradeToSign(150), _gradeToExecute(150) {}
 
@@ -93,3 +80,25 @@ void	AForm::beSigned(const Bureaucrat &bureaucrat)
 		throw AForm::GradeTooLowException();
 }
 
+// Exceptions
+const char *AForm::GradeTooHighException::what() const throw()
+{
+	return	"Grade too HIGH:\n"
+			"it has to be higher than 0 and smaller/equal to 150!";
+}
+
+const char *AForm::GradeTooLowException::what() const throw()
+{
+	return	"Grade too LOW:\n"
+			"it has to be higher than 0 and smaller/equal to 150!";
+}
+
+const char *AForm::FileNotOpenedException::what() const throw()
+{
+	return "File not opened!";
+}
+
+const char *AForm::FileNotSignedException::what() const throw()
+{
+	return "Form not signed!";
+}
