@@ -5,6 +5,7 @@
 #include "../includes/Intern.hpp"
 #include "../includes/AForm.hpp"
 
+
 int main(void)
 {
 	std::cout << "\nTEST 1: The CEO (Grade 1)" << std::endl;
@@ -15,7 +16,7 @@ int main(void)
 			Intern	randomIntern;
 			Bureaucrat	Tom("Tom", 1);
 			
-			president = randomIntern.makeForm("presidential pardon", "home");
+			president = randomIntern.makeForm("pardon", "home");
 			Tom.signForm(*president);
 			Tom.executeForm(*president);
 

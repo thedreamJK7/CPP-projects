@@ -3,9 +3,11 @@
 #include "../includes/RobotomyRequestForm.hpp"
 #include "../includes/PresidentialPardonForm.hpp"
 #include "../includes/AForm.hpp"
+#include <cstdlib>
 
 int main(void)
 {
+	std::srand(time(NULL));
 	std::cout << "\nTEST 1: The CEO (Grade 1)" << std::endl;
 	{
 		try
@@ -14,9 +16,12 @@ int main(void)
 			Bureaucrat Allan("Allan", 150);
 			ShrubberyCreationForm home("home");
 			ShrubberyCreationForm car("car");
+			RobotomyRequestForm roboto("roboto");
 			
 			Bert.signForm(home);
 			Bert.executeForm(home);
+			Bert.signForm(roboto);
+			Bert.executeForm(roboto);
 
 			Allan.signForm(car);
 			Allan.executeForm(home);

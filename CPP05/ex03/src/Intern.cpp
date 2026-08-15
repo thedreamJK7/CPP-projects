@@ -30,6 +30,11 @@ AForm *Intern::request(const std::string &target)
 	return new RobotomyRequestForm(target);
 }
 
+const char *Intern::invalidFormName::what() const throw()
+{
+	return "Invalid form name \n";
+} 
+
 AForm *Intern::makeForm(const std::string &form_type, 
 						const std::string &target)
 {
@@ -49,6 +54,6 @@ AForm *Intern::makeForm(const std::string &form_type,
 			return ((this->*pointers[i])(target));
 		}
 	}
-	std::cerr << "Error: Invalid form!" << std::endl;	
+	throw Intern::invalidFormName();	
 	return (NULL);
 }
