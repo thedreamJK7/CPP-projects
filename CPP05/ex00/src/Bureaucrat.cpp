@@ -22,7 +22,7 @@ Bureaucrat::Bureaucrat(const std::string & name, int grade)
 	_grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat & rhs): _grade(rhs._grade), _name(rhs._name)
+Bureaucrat::Bureaucrat(const Bureaucrat & rhs): _name(rhs._name), _grade(rhs._grade)
 { }
 
 Bureaucrat & Bureaucrat::operator=(const Bureaucrat &rhs)
