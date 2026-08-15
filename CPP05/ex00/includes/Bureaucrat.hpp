@@ -39,6 +39,7 @@ class Bureaucrat
 		int					_grade;
 };
 
+// Overload output operator;
 std::ostream	&operator<<(std::ostream &os, const Bureaucrat &member);
 
 #endif
