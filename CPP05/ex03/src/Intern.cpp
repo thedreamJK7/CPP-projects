@@ -34,6 +34,7 @@ AForm *Intern::makeForm(const std::string &form_type,
 						const std::string &target)
 {
 	std::string	forms[] = {"shrubbery creation", "presidential pardon", "robotomy request"};
+	// Array of Function Pointers
 	AForm* (Intern::*pointers[])(const std::string &) = {
 		&Intern::shrubbery,
 		&Intern::presidential,
