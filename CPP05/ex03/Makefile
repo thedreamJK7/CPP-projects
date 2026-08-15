@@ -1,9 +1,10 @@
-NAME 		= ex02
+NAME 		= ex03
 CPP			= c++
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
 RM 			= rm -rf
 SRC 		= src/main.cpp src/Bureaucrat.cpp src/AForm.cpp src/ShrubberyCreationForm.cpp\
-				src/PresidentialPardonForm.cpp src/RobotomyRequestForm.cpp
+				src/PresidentialPardonForm.cpp src/RobotomyRequestForm.cpp \
+				src/Intern.cpp
 
 OBJ_DIR 		= ./obj
 OBJS = $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRC))
