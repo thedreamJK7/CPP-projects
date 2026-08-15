@@ -3,11 +3,13 @@
 
 class ScalarConverter
 {
-	private:
-		
 	public:
-		ScalarConverter();
+		ScalarConverter(); // default constructor
+		ScalarConverter(const ScalarConverter &rhs); // copy constructor
+		ScalarConverter & operator=(const ScalarConverter &rhs); // assignment operator
 		~ScalarConverter();
+
+
 };
 
 #endif
