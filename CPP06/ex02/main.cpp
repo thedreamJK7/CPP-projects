@@ -39,6 +39,7 @@ void identify(Base* p)
 		std::cerr << "Error: Invalid type!" << std::endl;  
 }
 
+// reference cannot be null
 void identify(Base& p)
 {
 	try
