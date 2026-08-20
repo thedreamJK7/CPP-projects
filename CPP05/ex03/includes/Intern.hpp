@@ -1,11 +1,12 @@
+#ifndef Intern_H
+#define Intern_H
+
 #include "AForm.hpp"
 #include <string>
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
-
-#ifndef Intern_H
-#define Intern_H
+#include <exception>
 
 class ShrubberyCreationForm;
 class RobotomyRequestForm;
@@ -20,6 +21,11 @@ class Intern {
 
 		AForm	*makeForm(const std::string &form_name, 
 						const std::string &target_form);
+		class invalidFormName: public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
 
 	private:
 		AForm	*shrubbery(const std::string &target_form);
