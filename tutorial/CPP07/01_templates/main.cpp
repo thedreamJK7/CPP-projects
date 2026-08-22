@@ -1,5 +1,6 @@
 #include <iostream>
 
+// T is just a placeholder for a type.
 template <typename T> // Template definition
 T const &	max(T const & a, T const &b)
 {
