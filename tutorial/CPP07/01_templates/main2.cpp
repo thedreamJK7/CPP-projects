@@ -1,5 +1,6 @@
 #include <iostream>
 
+// defining a class template called List, with a type parameter called T.
 template <typename T> class List {
 	public:
 		List<T>(T const & content) { };
@@ -17,3 +18,18 @@ int main( void )
 	List<List<int>>c(a);
 	return (0);
 }
+
+/*
+
+template <typename T>
+        ↓
+T = placeholder
+        ↓
+	List<T>
+	↓
+┌───────────────┐
+│ _content : T  │
+│ _next ────────┼──► List<T>
+└───────────────┘
+
+*/
