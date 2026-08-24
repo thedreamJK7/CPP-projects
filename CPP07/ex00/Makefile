@@ -1,4 +1,4 @@
-NAME 		= ex02
+NAME 		= ex00
 CPP			= c++
 CPPFLAGS	= -g -Wall -Wextra -Werror -std=c++98
 RM 			= rm -rf
