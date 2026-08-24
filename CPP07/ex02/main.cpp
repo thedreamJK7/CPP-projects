@@ -2,21 +2,49 @@
 
 int main(void)
 {
-	try
+	std::cout << "Empty array!" << std::endl;
 	{
-		Array<int> p1(4);
-
-		p1[0] = 1;
-		p1[1] = 2;
-		p1[2] = 3;
-		p1[3] = 4;
-
-		std::cout << p1[0] << std::endl;
-		std::cout << p1.size() << std::endl;
+		Array<int> a;
+		std::cout << a.size() << std::endl;
 	}
-	catch(const std::exception& e)
+	std::cout << "Array with n elements!" << std::endl;
 	{
-		std::cerr << e.what() << '\n';
+		Array<int> a(5);
+		std::cout << a.size() << std::endl;
+
+		a.print();
+	}
+	std::cout << "Deep copy!" << std::endl;
+	{
+		Array<int> a(3);
+
+		a[0] = 10;
+		a[1] = 20;
+		a[2] = 30;
+
+		Array<int> b(a);
+
+		b[0] = 999;
+		a.print();
+		b.print();
+	}
+	std::cout << "Out of bounds!" << std::endl;
+	{
+		try
+		{
+			Array<int> a(3);
+
+			a[0] = 10;
+			a[1] = 20;
+			a[2] = 30;
+			
+			a.print();
+			a[4] = 5;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 	}
 	return 0;
 }
