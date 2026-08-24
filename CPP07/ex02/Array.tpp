@@ -59,3 +59,11 @@ template <typename T> T &Array<T>::operator[](unsigned int index)
 
 // size
 template <typename T> unsigned int Array<T>::size() const { return _size; } 
+
+// Print Array
+template <typename T> void Array<T>::print()
+{
+	for (size_t i = 0; i < _size; i++)
+		std::cout << _data[i] << " ";
+	std::cout << std::endl;
+}

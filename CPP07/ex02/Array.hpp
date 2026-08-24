@@ -18,14 +18,19 @@ template <typename T> class Array
 
 		Array &operator= (Array<T> const & rhs); // assign operator
 		T	&operator[] (unsigned int index);
-		unsigned int size() const;
+		
+		unsigned int size() const; // size
+		
+		void	print( void );
+
+		// exception
 		class outOfIndex: public std::exception
 		{
 			public:
 				virtual const char *what() const throw();
 		};
 };
-
+// do not forget to include tpp file at the end of hpp file
 #include "Array.tpp"
 
 #endif
