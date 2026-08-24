@@ -2,6 +2,7 @@
 #define ARRAY_HPP
 
 #include <iostream>
+#include <exception>
 
 template <typename T> class Array
 {
@@ -10,10 +11,21 @@ template <typename T> class Array
 		unsigned int	_size;
 
 	public:
-		Array ();
-		Array (unsigned int &size);
-		Array (Array<T> const &rhs);
-		Array &operator= (Array<T> const & rhs);
+		Array (); // default
+		Array (unsigned int size); // parametrized
+		Array (Array<T> const &rhs); // copy
+		~Array (); // destructor
+
+		Array &operator= (Array<T> const & rhs); // assign operator
+		T	&operator[] (unsigned int index);
+		unsigned int size() const;
+		class outOfIndex: public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
 };
+
+#include "Array.tpp"
 
 #endif
