@@ -27,6 +27,9 @@ Base * generate(void)
 	return (NULL);
 }
 
+// identifying which object we are pointing to
+// dynamic_cast returns nullptr if cast fails
+// Downcast from Base to Derived
 void identify(Base* p)
 {
 	if (dynamic_cast<A *>(p))
@@ -66,6 +69,7 @@ void identify(Base& p)
 	std::cerr << "Error: Invalid type!" << std::endl;
 }
 
+// declaring the pointer
 int main( void )
 {
 	std::srand(time(NULL));
