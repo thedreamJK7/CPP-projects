@@ -15,6 +15,10 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &rhs)
 	return (*this);
 }
 
+/*
+	NaN is for not a number, undefined and cant be represented: sqrt(-5), 1 / 0
+	inf is for infinity numbers: 1 / 0.000000009, or can not be stored
+*/
 bool	handle_literals(const std::string &str)
 {
 	static const std::string	f_options[4] = {"-inff", "+inff", "inff", "nanf"};
@@ -49,6 +53,10 @@ void	print_char(const char &c)
 	return ;
 }
 
+/*
+	1.0 / 0.0 -- inf 
+	0.0 / 0.0 -- NaN
+*/
 bool	handle_double_edges(const double &doubleVal)
 {
 	const static std::string	inf[2] = {"-inf", "+inf"};
@@ -124,6 +132,10 @@ void	print_number(double &d)
 								<< std::endl;
 }
 
+/*
+	strtod() converts string to double
+	end pointer points to where conversion stopped
+*/
 void	ScalarConverter::convert(const std::string &str)
 {
 	double	doubleVal;

@@ -10,6 +10,10 @@ int main( void )
 	myData->second = 84;
 
 	uintptr_t temp = Serializer::serialize(myData);
+	std::cout<< ">>>>>>>> Actual address(hex)! <<<<<<"<< std::endl;
+	std::cout<< myData << std::endl;
+	std::cout<< ">>>>>>>> Stored address(dec)! <<<<<<"<< std::endl;
+	std::cout << temp << std::endl;
 	Data *restored = NULL;
 	restored = Serializer::deserialize (temp);
 
