@@ -2,10 +2,10 @@
 #define SCALARCONVERTER_HPP
 
 #include <string>
+#include <cmath> // isNan
 #include <iostream>
-#include <limits>
-#include <cctype>
-#include <cmath>
+#include <limits> // limits
+#include <cctype> //  
 #include <sstream>
 #include <iomanip>
 #include <cstdlib>
