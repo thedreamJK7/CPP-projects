@@ -1,8 +1,8 @@
-NAME 		= ex00
+NAME 		= ex01
 CPP			= c++
 CPPFLAGS	= -g -Wall -Wextra -Werror -std=c++98
 RM 			= rm -rf
-SRC 		= main.cpp
+SRC 		= main.cpp Span.cpp
 
 OBJ_DIR 		= ./obj
 OBJS = $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRC))
