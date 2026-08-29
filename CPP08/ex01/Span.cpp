@@ -53,7 +53,7 @@ unsigned int	Span::longestSpan(void) {
 	if (_counter < 2) {
 		throw Span::noSpan();
 	}
-	
+
 	std::vector<int> tmp(_n);
 	std::sort(tmp.begin(), tmp.end());
 	return (std::abs(tmp[0] - tmp[tmp.size() - 1]));
