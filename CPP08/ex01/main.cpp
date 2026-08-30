@@ -3,8 +3,8 @@
 int main()
 {
 	{
-		try
-		{
+		std::cout << "Test with 5 elements" << std::endl;
+		try {
 			Span sp = Span(5);
 
 			sp.addNumber(6);
@@ -14,9 +14,23 @@ int main()
 			sp.addNumber(11);
 			std::cout << sp.shortestSpan() << std::endl;
 			std::cout << sp.longestSpan() << std::endl;
+		} catch(const std::exception& e) {
+			std::cerr << e.what() << '\n';
 		}
-		catch(const std::exception& e)
-		{
+	}
+
+	{
+		std::cout << "Test with 10000 elements" << std::endl;
+		try {
+			Span sp(10000);
+			std::srand(time(NULL));
+
+			for (size_t i = 0; 10000 > i; i++ ) {
+				sp.addNumber(std::rand() % 10000 + 1);
+			}
+			std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+			std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+		} catch(const std::exception& e) {
 			std::cerr << e.what() << '\n';
 		}
 	}

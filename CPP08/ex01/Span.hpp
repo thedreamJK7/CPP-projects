@@ -5,6 +5,8 @@
 #include <vector>
 #include <exception>
 #include <algorithm>
+#include <cstdlib>
+#include <ctime>
 
 class Span {	
 	public:
@@ -30,17 +32,17 @@ class Span {
 		};
 
 		// getter, setter
-		unsigned int	getSize() const { return _size; };
-		unsigned int	getCounter() const { return _counter; };
-		void			printAll(std::vector<int> &data) const {
+		unsigned int		getSize() const { return _size; };
+		unsigned int		getCounter() const { return _counter; };
+		void				printAll(void) const {
 			for (size_t i = 0; i < _counter; i++)
-				std::cout << data[i] << " ";
+				std::cout << _n[i] << " ";
 			std::cout << std::endl;
 		};
 
-		void			addNumber(int n);
-		unsigned int	shortestSpan(void);
-		unsigned int	longestSpan(void);
+		void				addNumber(int n);
+		unsigned int		shortestSpan(void);
+		unsigned int		longestSpan(void);
 	private:
 		std::vector<int>	_n;
 		unsigned int		_size;
