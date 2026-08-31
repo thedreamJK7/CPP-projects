@@ -62,9 +62,9 @@ void reverse_iter(void) {
 	mstack.push(9);
 
 	MutantStack<int>::reverse_iterator rit = mstack.rbegin();
-	// std::cout << *rit << std::endl;
+	std::cout << *rit << std::endl;
 	MutantStack<int>::reverse_iterator rit_e = mstack.rend();
-	// std::cout << *(rit_e - 1) << std::endl;
+	std::cout << *(rit_e - 1) << std::endl;
 	while (rit != rit_e) {
 		std::cout << *rit << std::endl;
 		rit++;
