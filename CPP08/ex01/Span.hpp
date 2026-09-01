@@ -34,17 +34,13 @@ class Span {
 		// getter, setter
 		unsigned int		getSize() const { return _size; };
 		unsigned int		getCounter() const { return _counter; };
-		void				printAll(void) const {
-			for (size_t i = 0; i < _counter; i++)
-				std::cout << _n[i] << " ";
-			std::cout << std::endl;
-		};
+		void				printAll(void) const;
 
 		void				addNumber(int n);
 		unsigned int		shortestSpan(void);
 		unsigned int		longestSpan(void);
 	private:
-		std::vector<int>	_n;
+		std::vector<int>	_data;
 		unsigned int		_size;
 		unsigned int		_counter;
 };
