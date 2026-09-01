@@ -15,5 +15,6 @@ int main(void)
 	st.pop();
 	std::cout << st.top() << std::endl;
 	std::cout << st.size() << std::endl;
+
 	return (0);
 }
