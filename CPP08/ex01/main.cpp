@@ -34,5 +34,31 @@ int main()
 			std::cerr << e.what() << '\n';
 		}
 	}
+	{
+		try
+		{
+			std::cout << "Test with Group elements" << std::endl;
+			Span sp(5);
+
+			std::vector<int> v;
+			v.push_back(10);
+			v.push_back(20);
+			v.push_back(30);
+
+			sp.addGroup(v);
+
+			std::vector<int> v2;
+			v2.push_back(40);
+			v2.push_back(50);
+
+			sp.addGroup(v2);
+			std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+			std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+	}
 	return 0;
 }
