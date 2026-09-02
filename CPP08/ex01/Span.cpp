@@ -27,6 +27,14 @@ void	Span::addNumber(int n) {
 		throw Span::outOfRange();
 }
 
+void Span::addGroup(std::vector<int> &arr) {
+	if ((std::distance(arr.begin(), arr.end()) + _counter) > _size) {
+		throw Span::outOfRange();
+	}
+	_n.insert(_n.end(), arr.begin(), arr.end());
+	_counter += std::distance(arr.begin(), arr.end());
+}
+
 unsigned int	Span::shortestSpan(void) {
 	int	dif;
 	int span;
@@ -59,3 +67,8 @@ unsigned int	Span::longestSpan(void) {
 	return (std::abs(tmp[0] - tmp[tmp.size() - 1]));
 }
 
+void	Span::printAll(void) const {
+	for (size_t i = 0; i < _counter; i++)
+		std::cout << _n[i] << " ";
+	std::cout << std::endl;
+};
