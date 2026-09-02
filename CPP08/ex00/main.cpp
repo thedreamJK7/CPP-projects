@@ -12,7 +12,6 @@ int main(void)
 			lst.push_back(3);
 			lst.push_back(17);
 			lst.push_back(20);
-			// lst[2] not allowed
 			std::list<int>::const_iterator it = easyfind(lst, 23);
 			std::cout << *it << std::endl;
 		} catch (std::exception &e) {
