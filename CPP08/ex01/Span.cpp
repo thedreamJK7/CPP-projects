@@ -3,7 +3,7 @@
 Span::Span(const unsigned int n): _size(n), _counter(0) { }
 
 Span::Span(Span const &rhs): _size(rhs._size), _counter(rhs._counter) { 
-	this->_n = rhs._n;
+	this->_data = rhs._data;
 }
 
 Span & Span::operator=(Span const &rhs) {
@@ -13,7 +13,7 @@ Span & Span::operator=(Span const &rhs) {
 
 	this->_size = rhs._size;
 	this->_counter = rhs._counter;
-	this->_n = rhs._n;
+	this->_data = rhs._data;
 
 	return (*this);
 }
@@ -22,7 +22,7 @@ Span::~Span() { }
 
 void	Span::addNumber(int n) {
 	if (_size >= ++_counter)
-		_n.push_back(n);
+		_data.push_back(n);
 	else
 		throw Span::outOfRange();
 }
@@ -42,7 +42,7 @@ unsigned int	Span::shortestSpan(void) {
 	if (_counter < 2) {
 		throw Span::noSpan();
 	}
-	std::vector<int> tmp(_n);
+	std::vector<int> tmp(_data);
 	std::sort(tmp.begin(), tmp.end());
 	for (size_t i = 0; i < _counter - 1; i++)
 	{
@@ -62,7 +62,7 @@ unsigned int	Span::longestSpan(void) {
 		throw Span::noSpan();
 	}
 
-	std::vector<int> tmp(_n);
+	std::vector<int> tmp(_data);
 	std::sort(tmp.begin(), tmp.end());
 	return (std::abs(tmp[0] - tmp[tmp.size() - 1]));
 }
