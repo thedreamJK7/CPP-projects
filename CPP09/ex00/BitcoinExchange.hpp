@@ -35,3 +35,18 @@ class BitcoinExchange {
 };
 
 #endif
+
+/*
+private:
+    std::map<std::string, double> _data;
+
+    void   loadDatabase(const std::string& filename);
+    bool   parseLine(const std::string& line, std::string& outDate, double& outValue) const;
+    bool   isLeapYear(int year) const;
+    int    maxDaysInMonth(int year, int month) const;
+    double getLowerBoundRate(const std::string& date) const;
+
+    BitcoinExchange(const BitcoinExchange&);
+    BitcoinExchange& operator=(const BitcoinExchange&);
+
+*/
