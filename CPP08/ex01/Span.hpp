@@ -37,6 +37,8 @@ class Span {
 		void				printAll(void) const;
 
 		void				addNumber(int n);
+		// adding group containers such as vec, arr and list
+		void				addGroup(std::vector<int> &);
 		unsigned int		shortestSpan(void);
 		unsigned int		longestSpan(void);
 	private:

@@ -4,6 +4,11 @@
 #include <iostream>
 #include <stack>
 
+/*
+	template< class T, class Container = std::deque<T>> 
+	class stack;
+*/
+
 template <typename T>
 class MutantStack: public std::stack<T> {
 	public:
