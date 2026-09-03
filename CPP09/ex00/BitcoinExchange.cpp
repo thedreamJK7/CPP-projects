@@ -1,26 +1,11 @@
 #include "BitcoinExchange.hpp"
 
 BitcoinExchange::BitcoinExchange(){
-	std::string	 filename = "data.csv"; 
-	std::ifstream file(filename.c_str());
-
-	if (!file.is_open()) {
-		throw BitcoinExchange::fileNotOpened();
-	}
-	std::string line;
-	std::getline(file, line);
-	while (std::getline(file, line)) {
-		size_t foundComma = line.find(',');
-		if (foundComma == std::string::npos)
-			continue;
-		std::string date = line.substr(0, foundComma);
-		double rate = std::atof(line.substr(foundComma + 1).c_str());
-		_data[date] = rate;
-	}
+	loadDatabase("data.csv");
 }
 
 BitcoinExchange::BitcoinExchange(BitcoinExchange const &rhs) { 
-	(void)(rhs);
+	(void)rhs;
 }
 
 BitcoinExchange & BitcoinExchange::operator=(BitcoinExchange const &rhs) {
@@ -39,6 +24,25 @@ void BitcoinExchange::printAllData(void) {
 	}
 }
 
+void BitcoinExchange::loadDatabase(const std::string& filename) {
+	std::ifstream					file(filename.c_str());
+	size_t							foundComma;
+	std::string						line;
+	std::pair<std::string, double>	data;		
+
+	if (!file.is_open()) 
+		throw BitcoinExchange::fileNotOpened();
+	std::getline(file, line);
+	while (std::getline(file, line)) {
+		foundComma = line.find(',');
+		if (foundComma == std::string::npos)
+			continue;
+		data.first = line.substr(0, foundComma);
+		data.second = std::atof(line.substr(foundComma + 1).c_str());
+		_data[data.first] = data.second;
+	}
+}
+
 bool BitcoinExchange::validateDateStr(std::string const &date) {
 	if (date[4] != '-' && date[7] != '-') {
 		return false;
@@ -48,7 +52,7 @@ bool BitcoinExchange::validateDateStr(std::string const &date) {
 	month = atoi(date.substr(5, 7).c_str());
 	day = atoi(date.substr(8).c_str());
 	if (year < 0 || month < 1 || month > 12 || day < 1) {
-    	return false;
+		return false;
 	}
 	int maxDay;
 	switch (month) {
@@ -81,18 +85,16 @@ void BitcoinExchange::process(std::string const &input) {
 		std::string dateStr = line.substr(0, vertical);
 		std::string valueStr = line.substr(vertical + 3);
 		
-		// next steps go here:
 		if (!validateDateStr(dateStr)) {
 			std::cerr << "Error: bad input => " << dateStr << std::endl;
 			continue;
 		}
-
 		double val = std::atof(valueStr.c_str());
 		if (val < 0) {
 			std::cerr << "Error: not a positive number." << std::endl;
 			continue;
 		} else if (val > 1000) {
-			std::cerr << "Error: too large a number." << std::endl;
+			std::cerr << "Error: too large number." << std::endl;
 			continue;
 		}
 		

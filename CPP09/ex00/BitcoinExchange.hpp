@@ -5,7 +5,7 @@
 #include <fstream>
 #include <map>
 #include <exception>
-#include <stdlib.h>
+#include <cstdlib>
 
 class BitcoinExchange {
 	public:
@@ -23,9 +23,12 @@ class BitcoinExchange {
 		void	printAllData(void);
 		bool	validateDateStr(std::string const &);
 		bool	validateValStr(std::string const &);
+		std::string findCloserDate(std::string const &);
 	
 	private:
 		std::map<std::string, double> _data;
+
+		void	loadDatabase(const std::string& filename);
 
 		BitcoinExchange(BitcoinExchange const &);
 		BitcoinExchange &operator = (BitcoinExchange const &);
