@@ -42,7 +42,7 @@ class Span {
 		unsigned int		shortestSpan(void);
 		unsigned int		longestSpan(void);
 	private:
-		std::vector<int>	_n;
+		std::vector<int>	_data;
 		unsigned int		_size;
 		unsigned int		_counter;
 };
