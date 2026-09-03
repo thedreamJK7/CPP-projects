@@ -21,6 +21,8 @@ class BitcoinExchange {
 		// Methods
 		void	process(std::string const &);
 		void	printAllData(void);
+		bool	validateDateStr(std::string const &);
+		bool	validateValStr(std::string const &);
 	
 	private:
 		std::map<std::string, double> _data;

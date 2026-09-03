@@ -39,6 +39,30 @@ void BitcoinExchange::printAllData(void) {
 	}
 }
 
+bool BitcoinExchange::validateDateStr(std::string const &date) {
+	if (date[4] != '-' && date[7] != '-') {
+		return false;
+	}
+	int month, year, day;
+	year = atoi(date.substr(0, 4).c_str());
+	month = atoi(date.substr(5, 7).c_str());
+	day = atoi(date.substr(8).c_str());
+	if (year < 0 || month < 1 || month > 12 || day < 1) {
+    	return false;
+	}
+	int maxDay;
+	switch (month) {
+		case 2:
+			maxDay = 28;
+			if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
+				maxDay = 29;
+			break;
+		case 4: case 6: case 9: case 11: maxDay = 30; break;
+		default: maxDay = 31; break;
+	}
+	return day <= maxDay;
+}
+
 void BitcoinExchange::process(std::string const &input) {
 	std::ifstream file(input.c_str());
 
@@ -57,6 +81,21 @@ void BitcoinExchange::process(std::string const &input) {
 		std::string dateStr = line.substr(0, vertical);
 		std::string valueStr = line.substr(vertical + 3);
 		
+		// next steps go here:
+		if (!validateDateStr(dateStr)) {
+			std::cerr << "Error: bad input => " << dateStr << std::endl;
+			continue;
+		}
+
+		double val = std::atof(valueStr.c_str());
+		if (val < 0) {
+			std::cerr << "Error: not a positive number." << std::endl;
+			continue;
+		} else if (val > 1000) {
+			std::cerr << "Error: too large a number." << std::endl;
+			continue;
+		}
 		
+		// - print result
 	}
 }
