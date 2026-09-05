@@ -31,8 +31,9 @@ static int executeOperand(std::string& token, int &a, int& b) {
 	else if (token == "/") {
 		if (a == 0)
 			throw RPN::Error();
+		return (b / a);
 	}
-	return (b / a);
+	return (0);
 }
 
 static bool	isDigit(std::string& c) {
