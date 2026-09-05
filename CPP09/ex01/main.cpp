@@ -6,9 +6,12 @@ int main(int argc, char *argv[]) {
 		return (1);
 	}
 	try {
-		
-	} catch (const std::exception& e) {
+		RPN rpn;
+		int ret = rpn.evaluate(argv[1]);
+		std::cout << ret << std::endl;
+	} catch (const std::exception &e) {
 		std::cerr << e.what() << std::endl;
+		return 1;
 	}
 	return (0);
 }

@@ -15,40 +15,60 @@ RPN &RPN::operator = (const RPN& rhs) {
 static bool isOperand(std::string& c) {
 	std::string operands = "+-/*";
 
-	if (operands.find(c, 0) != std::string::npos) {
+	if (c.size() == 1 && operands.find(c, 0) != std::string::npos) {
 		return true;
 	}
 	return false;
+}
+
+static int executeOperand(std::string& token, int &a, int& b) {
+	if (token == "+")
+		return (b + a);
+	else if (token == "-")
+		return (b - a);
+	else if (token == "*" )
+		return (b * a);
+	else if (token == "/") {
+		if (a == 0)
+			throw RPN::Error();
+	}
+	return (b / a);
 }
 
 static bool	isDigit(std::string& c) {
-	if (c >= "0" && c <= "9") {
+	if (c.size() == 1 && c >= "0" && c <= "9") {
 		return true;
 	}
 	return false;
 }
 
-int RPN::evaluate(std::string& str) {
+int RPN::evaluate(const std::string& str) {
 	std::string			token;
 	std::stringstream	ss(str);
 	std::stack<int>		stored;
-	
+
 	while (ss >> token) {
-		if (isOperand(token) && token.size() == 1) {
+		if (isOperand(token)) {
 			if (stored.size() < 2) {
-				std::cerr << "Error" << std::endl;
-				return 1;
+				throw RPN::Error();
 			}
 			int a = stored.top();
 			stored.pop();
 			int b = stored.top();
 			stored.pop();
-		} else if (isDigit(token) && token.size() == 1) {
+			try {
+				int res = executeOperand(token, a, b);
+				stored.push(res);
+			} catch(const std::exception& e) {
+				throw ;
+			}
+		} else if (isDigit(token)) {
 			stored.push(std::atoi(token.c_str()));
 		} else {
-			std::cerr << "Error" << std::endl;
-			return 1;
+			throw RPN::Error();
 		}
 	}
-	return (0);
+	if (stored.size() > 1 || stored.empty())
+		throw RPN::Error();
+	return (stored.top());
 }

@@ -2,7 +2,7 @@ NAME 		= rpn
 CPP			= c++
 CPPFLAGS	= -g -Wall -Wextra -Werror -std=c++98
 RM 			= rm -rf
-SRC 		= main.cpp rpn.cpp
+SRC 		= main.cpp RPN.cpp
 
 OBJ_DIR 		= ./obj
 OBJS = $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRC))

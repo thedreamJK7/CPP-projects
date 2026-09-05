@@ -5,12 +5,21 @@
 #include <string>
 #include <sstream>
 #include <stack>
+#include <cstdlib>
+#include <exception>
 
 class RPN {
 	public:
 		RPN();
 		~RPN();
-		int	evaluate(std::string &);
+
+		int	evaluate(const std::string &);
+
+		class Error: public std::exception {
+			virtual const char* what() const throw() {
+				return "Error";
+			}
+		};
 	
 	private:
 		RPN(const RPN &);
