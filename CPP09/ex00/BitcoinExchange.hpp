@@ -32,6 +32,7 @@ class BitcoinExchange {
 			}
 		};
 
+		
 		BitcoinExchange(BitcoinExchange const &);
 		BitcoinExchange &operator = (BitcoinExchange const &);
 };
