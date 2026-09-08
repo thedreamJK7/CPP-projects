@@ -22,18 +22,23 @@ static bool isOperand(std::string& c) {
 }
 
 static int executeOperand(std::string& token, int &a, int& b) {
+	long	res;
 	if (token == "+")
-		return (b + a);
+		res = (long)a + b;
 	else if (token == "-")
-		return (b - a);
+		res = (long)b - a;
 	else if (token == "*" )
-		return (b * a);
+		res = (long)b * a;
 	else if (token == "/") {
 		if (a == 0)
 			throw RPN::Error();
-		return (b / a);
+		res = (long)b / a;
 	}
-	return (0);
+	if (res > std::numeric_limits<int>::max() 
+		|| res < std::numeric_limits<int>::min()) {
+		throw RPN::Error();
+	}
+	return static_cast<int>(res);
 }
 
 static bool	isDigit(std::string& c) {

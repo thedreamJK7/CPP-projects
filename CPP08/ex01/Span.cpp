@@ -31,7 +31,7 @@ void Span::addGroup(std::vector<int> &arr) {
 	if ((std::distance(arr.begin(), arr.end()) + _counter) > _size) {
 		throw Span::outOfRange();
 	}
-	_n.insert(_n.end(), arr.begin(), arr.end());
+	_data.insert(_data.end(), arr.begin(), arr.end());
 	_counter += std::distance(arr.begin(), arr.end());
 }
 
@@ -69,6 +69,6 @@ unsigned int	Span::longestSpan(void) {
 
 void	Span::printAll(void) const {
 	for (size_t i = 0; i < _counter; i++)
-		std::cout << _n[i] << " ";
+		std::cout << _data[i] << " ";
 	std::cout << std::endl;
 };
