@@ -16,20 +16,33 @@ class PmergeMeVector {
 		PmergeMeVector(const char* argv[]);
 		~PmergeMeVector();
 
-		void print() {
+		void	printArr() {
 			for (std::vector<int>::iterator it = _nums.begin(); it != _nums.end(); it++) {
 				std::cout << *it << std::endl;
 			}
 		};
+		void	printPair() {
+			for (std::vector<Pair>::iterator it = _pairs.begin(); it != _pairs.end(); it++) {
+				std::cout << "(" << (*it).large << ", " << (*it).small << ")" << std::endl;
+			}	
+		}
 		class Error: public std::exception {
 			virtual const char* what() const throw() {
 				return "Error";
 			};
 		};
-		std::vector<Pair> makePair(void);
+		void				makePair();
+		void				sortLarge();
+		std::vector<Pair>	getPairs() { return _pairs;};
+		void				buildMainChain();
+		
 
 	private:
 		std::vector<int>	_nums;
+		std::vector<Pair>	_pairs;
+		std::vector<int>	_mainChain;
+		std::vector<int>	_unsorted;
+		int					_leftover;
 
 		PmergeMeVector();
 		PmergeMeVector(const PmergeMeVector&);
