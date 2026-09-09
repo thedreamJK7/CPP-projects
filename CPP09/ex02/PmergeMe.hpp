@@ -6,6 +6,11 @@
 #include <exception>
 #include <sstream>
 
+struct Pair {
+	int	small;
+	int	large;
+};
+
 class PmergeMeVector {
 	public:
 		PmergeMeVector(const char* argv[]);
@@ -21,6 +26,7 @@ class PmergeMeVector {
 				return "Error";
 			};
 		};
+		std::vector<Pair> makePair(void);
 
 	private:
 		std::vector<int>	_nums;

@@ -16,3 +16,8 @@ PmergeMeVector::PmergeMeVector(const char* argv[]) {
 
 PmergeMeVector::~PmergeMeVector() { };
 
+std::vector<Pair> PmergeMeVector::makePair(void) {
+	std::vector<Pair> pairs;
+
+	
+}
