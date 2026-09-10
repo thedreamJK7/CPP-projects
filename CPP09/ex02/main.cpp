@@ -1,4 +1,4 @@
-#include "PmergeMe.hpp"
+#include "PmergeMeVector.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -8,11 +8,9 @@ int main(int argc, char const *argv[])
 	}
 	try {
 		PmergeMeVector vec(++argv);
-		vec.makePair();
-		vec.buildMainChain();
-		vec.mergeInsertion();
-		vec.printPair();
-		vec.printArr();
+		vec.printBefore();
+		vec.sort();
+		vec.printAfter();
 	} catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
