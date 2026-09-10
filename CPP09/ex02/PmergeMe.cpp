@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-PmergeMeVector::PmergeMeVector(const char* argv[]) {
+PmergeMeVector::PmergeMeVector(const char* argv[]): _leftover(-1) {
 	int	num;
 
 	while (*argv != NULL) {
@@ -101,3 +101,96 @@ void PmergeMeVector::buildMainChain() {
 	}
 }
 
+static int jacobNumber(int n) {
+	if (n == 0)
+		return 0;
+	if (n == 1)
+		return 1;
+	return jacobNumber(n - 1) + 2 * jacobNumber(n - 2);
+}
+
+static std::vector<int> jacobsthalSequence(size_t pendingSize) {
+	std::vector<int>	jacobsequence;
+	std::vector<int>	insertedIndex;
+	int					index = 3;
+
+	if (pendingSize == 0)
+		return insertedIndex;
+
+	int value = jacobNumber(index);	
+	while ((int)(pendingSize - 1) > value)
+	{
+		jacobsequence.push_back(value);
+		value = jacobNumber(++index);
+	}
+	size_t prevJacobNum = 1;
+	for (size_t i = 0; i < jacobsequence.size(); i++)
+	{
+		insertedIndex.push_back(jacobsequence[i]);
+		for (size_t j = jacobsequence[i] - 1; prevJacobNum < j; j--)
+			insertedIndex.push_back(j);
+		prevJacobNum = jacobsequence[i];
+	}
+	while (prevJacobNum < --pendingSize) {
+		insertedIndex.push_back(pendingSize);
+	}
+	return (insertedIndex);
+}
+
+static int binarySearch(std::vector<int>& arr, int target, int bound) {
+	int	low = 0;
+	int high = bound - 1;
+	int mid;
+	while (high >= low) {
+		mid = low + (high - low) / 2;
+
+		if (arr[mid] == target) {
+			return mid;
+		}
+
+		if (arr[mid] < target) {
+			low = mid + 1;
+		}
+
+		if (arr[mid] > target) {
+			high = mid - 1;
+		}
+	}
+	return (low);
+}
+
+static int binarySearchPair(std::vector<Pair>& arr, int target) {
+	int	low = 0;
+	int high = arr.size() - 1;
+	int mid;
+	while (high >= low) {
+		mid = low + (high - low) / 2;
+
+		if (arr[mid].small == target) {
+			return arr[mid].large;
+		}
+
+		if (arr[mid].small < target) {
+			low = mid + 1;
+		}
+
+		if (arr[mid].small > target) {
+			high = mid - 1;
+		}
+	}
+	return (arr[mid].large);
+}
+
+void PmergeMeVector::mergeInsertion() {
+	_mainChain.insert(_mainChain.begin(), _unsorted[0]);
+	std::vector<int>	indSeq = jacobsthalSequence(_unsorted.size());
+
+	for (std::vector<int>::iterator it = indSeq.begin(); indSeq.end() != it; it++)
+	{
+		std::cout << _unsorted[*it - 1] << std::endl;
+		int partner = binarySearchPair(_pairs, _unsorted[*it - 1]);
+		int lastPos = binarySearch(_mainChain, partner, _mainChain.size());
+		int insertPos = binarySearch(_mainChain, _unsorted[*it - 1], lastPos);
+		_mainChain.insert(_mainChain.begin() + insertPos, _unsorted[*it - 1]);
+	}
+}
