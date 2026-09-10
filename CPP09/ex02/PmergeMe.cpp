@@ -109,7 +109,7 @@ static int jacobNumber(int n) {
 	return jacobNumber(n - 1) + 2 * jacobNumber(n - 2);
 }
 
-static std::vector<int> jacobsthalSequence(int pendingSize) {
+static std::vector<int> jacobsthalSequence(size_t pendingSize) {
 	std::vector<int>	jacobsequence;
 	std::vector<int>	insertedIndex;
 	int					index = 3;
@@ -118,16 +118,16 @@ static std::vector<int> jacobsthalSequence(int pendingSize) {
 		return insertedIndex;
 
 	int value = jacobNumber(index);	
-	while (pendingSize - 1 > value)
+	while ((int)(pendingSize - 1) > value)
 	{
 		jacobsequence.push_back(value);
 		value = jacobNumber(++index);
 	}
-	int prevJacobNum = 1;
-	for (int i = 0; i < jacobsequence.size(); i++)
+	size_t prevJacobNum = 1;
+	for (size_t i = 0; i < jacobsequence.size(); i++)
 	{
 		insertedIndex.push_back(jacobsequence[i]);
-		for (int j = jacobsequence[i] - 1; prevJacobNum < j; j--)
+		for (size_t j = jacobsequence[i] - 1; prevJacobNum < j; j--)
 			insertedIndex.push_back(j);
 		prevJacobNum = jacobsequence[i];
 	}
@@ -184,10 +184,12 @@ static int binarySearchPair(std::vector<Pair>& arr, int target) {
 void PmergeMeVector::mergeInsertion() {
 	_mainChain.insert(_mainChain.begin(), _unsorted[0]);
 	std::vector<int>	indSeq = jacobsthalSequence(_unsorted.size());
-	
+
 	for (std::vector<int>::iterator it = indSeq.begin(); indSeq.end() != it; it++)
 	{
 		int partner = binarySearchPair(_pairs, _unsorted[*it - 1]);
-		int lastPos = binarySearch();
-	}	
+		int lastPos = binarySearch(_mainChain, partner, _mainChain.size());
+		int insertPos = binarySearch(_mainChain, _unsorted[*it - 1], lastPos - 1);
+		_mainChain.insert(_mainChain.begin() + insertPos, _unsorted[*it - 1]);
+	}
 }
