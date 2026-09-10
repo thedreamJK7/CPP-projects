@@ -156,7 +156,7 @@ static int binarySearch(std::vector<int>& arr, int target, int bound) {
 			high = mid - 1;
 		}
 	}
-	return (mid);
+	return (low);
 }
 
 static int binarySearchPair(std::vector<Pair>& arr, int target) {
@@ -189,7 +189,7 @@ void PmergeMeVector::mergeInsertion() {
 	{
 		int partner = binarySearchPair(_pairs, _unsorted[*it - 1]);
 		int lastPos = binarySearch(_mainChain, partner, _mainChain.size());
-		int insertPos = binarySearch(_mainChain, _unsorted[*it - 1], lastPos - 1);
+		int insertPos = binarySearch(_mainChain, _unsorted[*it - 1], lastPos);
 		_mainChain.insert(_mainChain.begin() + insertPos, _unsorted[*it - 1]);
 	}
 }
