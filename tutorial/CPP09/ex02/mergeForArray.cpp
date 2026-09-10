@@ -15,7 +15,7 @@ public:
 	static void merge(std::vector<int> &left, std::vector<int> &right, std::vector<int> &nums) {
 		int lenL = left.size(), l = 0;;
 		int lenR = right.size(), r = 0;
-		int numsL = nums.size(), i = 0;
+		int i = 0;
 		while (lenL > l && lenR > r)
 		{
 			if (left[l] > right[r]) {
