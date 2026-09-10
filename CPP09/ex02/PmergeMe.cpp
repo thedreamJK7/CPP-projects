@@ -187,6 +187,7 @@ void PmergeMeVector::mergeInsertion() {
 
 	for (std::vector<int>::iterator it = indSeq.begin(); indSeq.end() != it; it++)
 	{
+		std::cout << _unsorted[*it - 1] << std::endl;
 		int partner = binarySearchPair(_pairs, _unsorted[*it - 1]);
 		int lastPos = binarySearch(_mainChain, partner, _mainChain.size());
 		int insertPos = binarySearch(_mainChain, _unsorted[*it - 1], lastPos);

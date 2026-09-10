@@ -11,6 +11,7 @@ int main(int argc, char const *argv[])
 		vec.makePair();
 		vec.buildMainChain();
 		vec.mergeInsertion();
+		vec.printPair();
 		vec.printArr();
 	} catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
