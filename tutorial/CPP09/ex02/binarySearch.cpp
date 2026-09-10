@@ -7,7 +7,7 @@ static int binarySearch(std::vector<T>& arr, T target) {
 	int high = arr.size() - 1;
 	int mid;
 	while (high >= low) {
-		mid = (low + high) / 2;
+		mid = low + (high - low) / 2;
 
 		if (arr[mid] == target) {
 			return mid;
@@ -26,9 +26,10 @@ static int binarySearch(std::vector<T>& arr, T target) {
 
 int main(void)
 {
-	std::vector<std::string> nums = {"a", "b", "c", "d"};
+	std::vector<int> nums = {2, 3, 6, 8};
 	std::string a = "a";
-	int index = binarySearch(nums, a);
+	int b = 5;
+	int index = binarySearch(nums, 6);
 	std::cout << index << std::endl;
 	return (0);
 }

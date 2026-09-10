@@ -17,7 +17,7 @@ class PmergeMeVector {
 		~PmergeMeVector();
 
 		void	printArr() {
-			for (std::vector<int>::iterator it = _nums.begin(); it != _nums.end(); it++) {
+			for (std::vector<int>::iterator it = _mainChain.begin(); it != _mainChain.end(); it++) {
 				std::cout << *it << std::endl;
 			}
 		};
@@ -35,6 +35,7 @@ class PmergeMeVector {
 		void				sortLarge();
 		std::vector<Pair>	getPairs() { return _pairs;};
 		void				buildMainChain();
+		void				mergeInsertion();
 		
 
 	private:

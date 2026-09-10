@@ -8,10 +8,10 @@ int main(int argc, char const *argv[])
 	}
 	try {
 		PmergeMeVector vec(++argv);
-		vec.printArr();
 		vec.makePair();
 		vec.buildMainChain();
-		vec.printPair();
+		vec.mergeInsertion();
+		vec.printArr();
 	} catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
