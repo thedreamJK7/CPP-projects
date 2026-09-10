@@ -35,6 +35,7 @@ class PmergeMeVector {
 		void				sortLarge();
 		std::vector<Pair>	getPairs() { return _pairs;};
 		void				buildMainChain();
+		void				mergeInsertion();
 		
 
 	private:

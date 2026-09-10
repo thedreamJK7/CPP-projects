@@ -159,6 +159,35 @@ static int binarySearch(std::vector<int>& arr, int target, int bound) {
 	return (mid);
 }
 
-void mergeInsertion() {
+static int binarySearchPair(std::vector<Pair>& arr, int target) {
+	int	low = 0;
+	int high = arr.size() - 1;
+	int mid;
+	while (high >= low) {
+		mid = low + (high - low) / 2;
+
+		if (arr[mid].small == target) {
+			return arr[mid].large;
+		}
+
+		if (arr[mid].small < target) {
+			low = mid + 1;
+		}
+
+		if (arr[mid].small > target) {
+			high = mid - 1;
+		}
+	}
+	return (arr[mid].large);
+}
+
+void PmergeMeVector::mergeInsertion() {
+	_mainChain.insert(_mainChain.begin(), _unsorted[0]);
+	std::vector<int>	indSeq = jacobsthalSequence(_unsorted.size());
 	
+	for (std::vector<int>::iterator it = indSeq.begin(); indSeq.end() != it; it++)
+	{
+		int partner = binarySearchPair(_pairs, _unsorted[*it - 1]);
+		int lastPos = binarySearch();
+	}	
 }
