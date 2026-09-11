@@ -5,6 +5,7 @@
 #include <vector>
 #include <exception>
 #include <sstream>
+#include <ctime>
 
 struct Pair {
 	int	small;

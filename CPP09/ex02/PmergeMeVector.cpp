@@ -27,7 +27,7 @@ namespace {
 			i++;
 		}
 	}
-
+	// Do merge sort with recursive approach splitting the vector in half each time and merging them back together
 	static void	mergeSort(std::vector<Pair> &nums) {
 		int	len = nums.size();
 		if (len == 1) {
@@ -101,8 +101,12 @@ PmergeMeVector::PmergeMeVector(const char* argv[]): _leftover(-1) {
 PmergeMeVector::~PmergeMeVector() { };
 
 void PmergeMeVector::sort() {
+	if (_nums.size() == 1)
+	{
+		_mainChain.push_back(_nums[0]);
+		return ;
+	}
 	makePair();
-	sortPairsByLarge();
 	buildMainChain();
 	mergeInsertion();
 }
@@ -140,12 +144,9 @@ void PmergeMeVector::makePair(void) {
 
 /* STEP 2: Merge Sort the pairs according to the first (biggest) value */
 
-void PmergeMeVector::sortPairsByLarge() {
-	mergeSort(_pairs);
-}
-
 // STEP 3: Set the sorted sequence
 void PmergeMeVector::buildMainChain() {
+	mergeSort(_pairs);
 	for (std::vector<Pair>::iterator it = _pairs.begin(); it < _pairs.end(); it++)
 	{
 		_mainChain.push_back((*it).large);
@@ -155,7 +156,8 @@ void PmergeMeVector::buildMainChain() {
 
 /* STEP 4: Insertion sort with comparison optimization using Jacobsthal sequence */
 void PmergeMeVector::mergeInsertion() {
-	// b1 is always <= a1, insert it at the front without binary search
+	// first element of pending value is the pair of first element of main chain
+	// we do not need to do binary search, just insert as a first element
 	_mainChain.insert(_mainChain.begin(), _unsorted[0]);
 	std::vector<int>	indSeq = jacobsthalSequence(_unsorted.size());
 	
@@ -168,6 +170,7 @@ void PmergeMeVector::mergeInsertion() {
 	}
 }
 
+// alternative for lower_bound
 int  PmergeMeVector::binarySearch(int target, int bound) const {
 	int	low = 0;
 	int high = bound - 1;
@@ -184,9 +187,10 @@ int  PmergeMeVector::binarySearch(int target, int bound) const {
 	return (low);
 }
 
+// Alternative for binary search
 int PmergeMeVector::findPartner(int pendingVal) const {
 	int	low = 0;
-	int high = _mainChain.size() - 1;
+	int high = _pairs.size() - 1;
 	int mid;
 	while (high >= low) {
 		mid = low + (high - low) / 2;
