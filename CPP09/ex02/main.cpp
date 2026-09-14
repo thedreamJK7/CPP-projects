@@ -1,4 +1,4 @@
-#include "PmergeMeVector.hpp"
+#include "./includes/PmergeMeVector.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
 		vec.sort();
 		vec.printAfter();
 		clock_t end = clock();
-			std::cout << "Time with std::vector: " << static_cast<double>(end - start) / 1000 << " millisec" << std::endl << std::endl;
+			std::cout << "Time with std::vector: " << static_cast<double>(end - start) / 1000 << " millisec" << std::endl;
 	} catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}

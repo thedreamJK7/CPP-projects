@@ -1,4 +1,4 @@
-#include "PmergeMeVector.hpp"
+#include "../includes/PmergeMeVector.hpp"
 
 namespace {
 	static void merge(std::vector<Pair> &left, std::vector<Pair> &right, std::vector<Pair> &nums) {
@@ -107,6 +107,7 @@ void PmergeMeVector::sort() {
 		return ;
 	}
 	makePair();
+	printPair();
 	buildMainChain();
 	mergeInsertion();
 }
@@ -209,4 +210,5 @@ void PmergeMeVector::insertPending(int value) {
 	int upperBound = binarySearch(partner, _mainChain.size());
 	int insertPos = binarySearch(value, upperBound);
 	_mainChain.insert(_mainChain.begin() + insertPos, value);
+	printAfter();
 }
