@@ -36,8 +36,8 @@ void Span::addGroup(std::vector<int> &arr) {
 }
 
 unsigned int	Span::shortestSpan(void) {
-	int	dif;
-	int span;
+	long	dif;
+	long	span;
 	
 	if (_counter < 2) {
 		throw Span::noSpan();
@@ -64,7 +64,8 @@ unsigned int	Span::longestSpan(void) {
 
 	std::vector<int> tmp(_data);
 	std::sort(tmp.begin(), tmp.end());
-	return (std::abs(tmp[0] - tmp[tmp.size() - 1]));
+	unsigned int longest_span = std::abs(static_cast<long>(tmp[0]) - static_cast<long>(tmp[tmp.size() - 1])); 
+	return (longest_span);
 }
 
 void	Span::printAll(void) const {
