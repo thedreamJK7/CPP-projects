@@ -46,7 +46,7 @@ unsigned int	Span::shortestSpan(void) {
 	std::sort(tmp.begin(), tmp.end());
 	for (size_t i = 0; i < _counter - 1; i++)
 	{
-		dif = std::abs(tmp[i] - tmp[i+1]);
+		dif = std::abs(static_cast<long>(tmp[i]) - static_cast<long>(tmp[i+1]));
 		if (dif == 0)
 			return (0);
 		if (i == 0)
