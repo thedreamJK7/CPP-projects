@@ -63,7 +63,7 @@ namespace {
 		if (pendingSize == 0)
 			return insertedIndex;
 		int value = jacobsthal(index);
-		while ((int)pendingSize > value)
+		while (static_cast<int>(pendingSize) > value)
 		{
 			jacobsequence.push_back(value);
 			index++;
@@ -105,11 +105,11 @@ void PmergeMeVector::sort() {
 	{
 		_mainChain.push_back(_nums[0]);
 		return ;
+	} else {
+		makePair();
+		buildMainChain();
+		mergeInsertion();
 	}
-	makePair();
-	printPair();
-	buildMainChain();
-	mergeInsertion();
 }
 
 /* STEP 1: Make pairs and sort in ascending order inside each pair */
@@ -202,7 +202,7 @@ int PmergeMeVector::findPartner(int pendingVal) const {
 		if (_pairs[mid].small > pendingVal)
 			high = mid - 1;
 	}
-	return (-1);
+	return (_pairs[low].large);
 }
 
 void PmergeMeVector::insertPending(int value) {
@@ -210,5 +210,4 @@ void PmergeMeVector::insertPending(int value) {
 	int upperBound = binarySearch(partner, _mainChain.size());
 	int insertPos = binarySearch(value, upperBound);
 	_mainChain.insert(_mainChain.begin() + insertPos, value);
-	printAfter();
 }
