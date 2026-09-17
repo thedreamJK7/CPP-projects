@@ -1,89 +1,5 @@
 #include "../includes/PmergeMeVector.hpp"
 
-namespace {
-	static void merge(std::vector<Pair> &left, std::vector<Pair> &right, std::vector<Pair> &nums) {
-		int lenL = left.size(), l = 0;
-		int lenR = right.size(), r = 0;
-		int i = 0;
-		while (lenL > l && lenR > r)
-		{
-			if (left[l].large > right[r].large) {
-				nums[i] = right[r];
-				r++;
-			} else {
-				nums[i] = left[l];
-				l++;
-			}
-			i++;
-		}
-		while(lenL > l) {
-			nums[i] = left[l];
-			l++;
-			i++;
-		}
-		while(lenR > r) {
-			nums[i] = right[r];
-			r++;
-			i++;
-		}
-	}
-	// Do merge sort with recursive approach splitting the vector in half each time and merging them back together
-	static void	mergeSort(std::vector<Pair> &nums) {
-		int	len = nums.size();
-		if (len == 1) {
-			return ;
-		}
-		int middle = len / 2;
-		std::vector<Pair> left;
-		std::vector<Pair> right;
-		for (int i = 0; len > i; i++) {
-			if (middle > i)
-				left.push_back(nums[i]);
-			else
-				right.push_back(nums[i]);
-		}
-		mergeSort(left);
-		mergeSort(right);
-		merge(left, right, nums);
-	}
-
-	static int jacobsthal(int n) {
-		if (n == 0)
-			return 0;
-		if (n == 1)
-			return 1;
-		return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
-	}
-
-	static std::vector<int> jacobsthalSequence(size_t pendingSize) {
-		std::vector<int>	jacobsequence;
-		std::vector<int>	insertedIndex;
-		int					index = 3;
-
-		if (pendingSize == 0)
-			return insertedIndex;
-		int value = jacobsthal(index);
-		while (value < static_cast<int>(pendingSize))
-		{
-			jacobsequence.push_back(value);
-			index++;
-			value = jacobsthal(index);
-		}
-		size_t prevJacobNum = 1;
-		for (size_t i = 0; i < jacobsequence.size(); i++)
-		{
-			insertedIndex.push_back(jacobsequence[i]);
-			for (size_t j = jacobsequence[i] - 1; prevJacobNum < j; j--)
-				insertedIndex.push_back(j);
-			prevJacobNum = jacobsequence[i];
-		}
-		for (size_t j = pendingSize; j > prevJacobNum; j--)
-			insertedIndex.push_back(j);
-		return (insertedIndex);
-	}
-}
-
-/* Constructor and destructor */
 PmergeMeVector::PmergeMeVector(const char* argv[]): _leftover(-1) {
 	int	num;
 
@@ -100,114 +16,130 @@ PmergeMeVector::PmergeMeVector(const char* argv[]): _leftover(-1) {
 
 PmergeMeVector::~PmergeMeVector() { };
 
-void PmergeMeVector::sort() {
+void PmergeMeVector::insertionSort() {
 	if (_nums.size() == 1)
 	{
 		_mainChain.push_back(_nums[0]);
 		return ;
 	} else {
-		makePair();
-		buildMainChain();
-		mergeInsertion();
+		makePair(); // Step 1
+		buildMainChain(); // Step 3
+		binaryInsert(); // Step 4
 	}
 }
 
-/* STEP 1: Make pairs and sort in ascending order inside each pair */
+/* Step 1: making a pair in descending order */
 
 void PmergeMeVector::makePair(void) {
-	Pair 						pair;
-	std::vector<int>::iterator	it = _nums.begin();
-	std::vector<int>::iterator	pairEnd;
-	std::vector<int>::iterator	first;
+	iterator	it = _nums.begin();
+	iterator	pairEnd;
+
 	if (_nums.size() % 2 == 1)
 	{
 		pairEnd = --_nums.end();
 		_leftover = *pairEnd;
-	} else {
+	} else
 		pairEnd = _nums.end();
-	}
-
 	while (it != pairEnd)
 	{
-		first = it;
-		it++;
-		if (*first >= *it) {
-			pair.large = *first;
-			pair.small = *it;
-		} else {
-			pair.large = *it;
-			pair.small = *first;	
-		}
-		_pairs.push_back(pair);
-		it++;
+		iterator	first = it++;
+		if (*first < *it)
+			std::swap(*first, *it);
+		_pairs.push_back(std::make_pair(*first, *(it++)));
 	}
 }
 
-/* STEP 2: Merge Sort the pairs according to the first (biggest) value */
+/* Step 2: Merge sort the pairs according to the first(biggest) value */
+void PmergeMeVector::merge(iteratorP begin, iteratorP mid, iteratorP end) {
+	// 2 sub container using range constructor
+	vecP firstHalf(begin, mid);
+	vecP secondHalf(mid, end);
 
-// STEP 3: Set the sorted sequence
+	// iterators for sub containers
+	iteratorP firstIt = firstHalf.begin();
+	iteratorP secondIt = secondHalf.begin();
+	iteratorP it = begin;
+	while (firstIt != firstHalf.end() && secondIt != secondHalf.end()) {
+		if (firstIt->first <= secondIt->first)
+			*it = *firstIt++;
+		else
+			*it = *secondIt++;
+		it++;
+	}
+	while (firstIt != firstHalf.end())
+		*it++ = *firstIt++;
+	while (secondIt != secondHalf.end())
+		*it++ = *secondIt++;
+}
+
+void PmergeMeVector::mergeSort(iteratorP begin, iteratorP end) {
+	if (std::distance(begin, end) > 1) {
+		iteratorP mid = begin;
+		std::advance(mid, std::distance(begin, end) / 2);
+		mergeSort(begin, mid);
+		mergeSort(mid, end);
+		merge(begin, mid, end);
+	}
+}
+
+/* STEP 3: Set the sorted sequence */
 void PmergeMeVector::buildMainChain() {
-	mergeSort(_pairs);
-	for (std::vector<Pair>::iterator it = _pairs.begin(); it < _pairs.end(); it++)
-	{
-		_mainChain.push_back((*it).large);
-		_unsorted.push_back((*it).small);
+
+	mergeSort(_pairs.begin(), _pairs.end());
+
+	iteratorP it = _pairs.begin();
+	while (it != _pairs.end()) {
+		_mainChain.push_back(it->first);
+		it++;
 	}
 }
 
-/* STEP 4: Insertion sort with comparison optimization using Jacobsthal sequence */
-void PmergeMeVector::mergeInsertion() {
-	// first element of pending value is the pair of first element of main chain
-	// we do not need to do binary search, just insert as a first element
-	_mainChain.insert(_mainChain.begin(), _unsorted[0]);
-	std::vector<int>	indSeq = jacobsthalSequence(_unsorted.size());
+/* STEP 4: merge insertion */
+static const int JACOBSTHAL[] = {3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731};
+
+static std::vector<int> jacobsthalSeq(size_t pendingSize) {
+	std::vector<int> out;
+	std::vector<int> jacob;
+	if (pendingSize == 0) return out;
 	
-	for (std::vector<int>::iterator it = indSeq.begin(); indSeq.end() != it; it++)
-		insertPending(_unsorted[*it - 1]);
+	// Copy terms < pendingSize
+	for (size_t i = 0; i < 12; i++) {
+		if (JACOBSTHAL[i] >= static_cast<int>(pendingSize)) break;
+		jacob.push_back(JACOBSTHAL[i]);
+	}
+
+	// expanding each into descending runs + tail
+	size_t last = 1;
+	for (size_t i = 0; i < jacob.size(); i++)
+	{
+		out.push_back(jacob[i]);
+		for (size_t j = jacob[i] - 1; last < j; --j)
+			out.push_back(j);
+		last = jacob[i];
+	}
+	for (size_t j = pendingSize; j > last; j--)
+		out.push_back(j);
+	return (out);
+}
+
+// iterator insert_pos = _mainChain.begin();
+// while (insert_pos != _mainChain.end() && *insert_pos < partner)
+// 	insert_pos++;
+
+void PmergeMeVector::binaryInsert() {
+	// b1 <= a1, insert at front without binary search
+	_mainChain.insert(_mainChain.begin(), _pairs[0].second);
+	std::vector<int> jacobSequence = jacobsthalSeq(_pairs.size());
+
+	for (iterator it = jacobSequence.begin(); jacobSequence.end() != it; it++) {
+		int partner = _pairs[*it - 1].second;
+		iterator search_end = std::lower_bound(_mainChain.begin(), _mainChain.end(), _pairs[*it - 1].first);
+		iterator insert_pos = std::lower_bound(_mainChain.begin(), search_end, partner);
+		_mainChain.insert(insert_pos, partner);
+	}
 	if (_leftover != -1)
 	{
-		int insertPos = binarySearch(_leftover, _mainChain.size());
-		_mainChain.insert(_mainChain.begin() + insertPos, _leftover);
+		iterator insert_lef = std::lower_bound(_mainChain.begin(), _mainChain.end(), _leftover);
+		_mainChain.insert(insert_lef, _leftover);
 	}
-}
-
-// alternative for lower_bound
-int  PmergeMeVector::binarySearch(int target, int bound) const {
-	int	low = 0;
-	int high = bound - 1;
-	int mid;
-	while (high >= low) {
-		mid = low + (high - low) / 2;
-		if (_mainChain[mid] == target)
-			return mid;
-		if (_mainChain[mid] < target)
-			low = mid + 1;
-		if (_mainChain[mid] > target)
-			high = mid - 1;
-	}
-	return (low);
-}
-
-// Alternative for binary search
-int PmergeMeVector::findPartner(int pendingVal) const {
-	int	low = 0;
-	int high = _pairs.size() - 1;
-	int mid;
-	while (high >= low) {
-		mid = low + (high - low) / 2;
-		if (_pairs[mid].small == pendingVal)
-			return _pairs[mid].large;
-		if (_pairs[mid].small < pendingVal)
-			low = mid + 1;
-		if (_pairs[mid].small > pendingVal)
-			high = mid - 1;
-	}
-	return (_pairs[low].large);
-}
-
-void PmergeMeVector::insertPending(int value) {
-	int partner = findPartner(value);
-	int upperBound = binarySearch(partner, _mainChain.size());
-	int insertPos = binarySearch(value, upperBound);
-	_mainChain.insert(_mainChain.begin() + insertPos, value);
 }

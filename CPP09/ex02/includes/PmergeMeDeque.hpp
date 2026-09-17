@@ -8,9 +8,9 @@
 
 typedef std::deque< std::pair<int, int> >			deqP; //  alias for deque<pair> container
 typedef std::deque<int> 							deq; //  alias for deque<pair> container
-typedef std::deque< std::pair<int, int> >::iterator	iteratorP; // alias for deque<pair> iterator
-typedef std::deque<int>::iterator					iterator; // alias for deque iterator
-typedef std::deque<int>::const_iterator				const_iterator; // alias for const deque iterator
+typedef std::deque< std::pair<int, int> >::iterator	iteratorPair; // alias for deque<pair> iterator
+typedef std::deque<int>::iterator					iteratorD; // alias for deque iterator
+typedef std::deque<int>::const_iterator				const_iteratorD; // alias for const deque iterator
 
 class PmergeMeDeque {
 	public:
@@ -18,19 +18,19 @@ class PmergeMeDeque {
 		~PmergeMeDeque();
 
 		void	printBefore() const {
-			for (const_iterator it = _nums.begin(); it != _nums.end(); it++) {
+			for (const_iteratorD it = _nums.begin(); it != _nums.end(); it++) {
 				std::cout << *it << " ";
 			}
 			std::cout << std::endl;
 		};
 		void	printAfter() const {
-			for (const_iterator it = _mainChain.begin(); it != _mainChain.end(); it++) {
+			for (const_iteratorD it = _mainChain.begin(); it != _mainChain.end(); it++) {
 				std::cout << *it << " ";
 			}
 			std::cout << std::endl;
 		};
 		void	printPair() {
-			for (iteratorP it = _pairs.begin(); it != _pairs.end(); it++) {
+			for (iteratorPair it = _pairs.begin(); it != _pairs.end(); it++) {
 				std::cout << "(" << (*it).first << ", " << (*it).second << ")" << std::endl;
 			}
 		}
@@ -42,8 +42,8 @@ class PmergeMeDeque {
 
 		void	insertionSort();
 		void	makePair();
-		void	merge(iteratorP begin, iteratorP mid, iteratorP end);
-		void	mergeSort(iteratorP begin, iteratorP end);
+		void	merge(iteratorPair begin, iteratorPair mid, iteratorPair end);
+		void	mergeSort(iteratorPair begin, iteratorPair end);
 		void	binaryInsert();
 		void	buildMainChain();
 
