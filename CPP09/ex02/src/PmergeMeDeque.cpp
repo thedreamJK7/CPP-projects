@@ -122,10 +122,6 @@ static std::deque<int> jacobsthalSeq(size_t pendingSize) {
 	return (out);
 }
 
-// iterator insert_pos = _mainChain.begin();
-// while (insert_pos != _mainChain.end() && *insert_pos < partner)
-// 	insert_pos++;
-
 void PmergeMeDeque::binaryInsert() {
 	// b1 <= a1, insert at front without binary search
 	_mainChain.insert(_mainChain.begin(), _pairs[0].second);

@@ -103,7 +103,7 @@ static std::vector<int> jacobsthalSeq(size_t pendingSize) {
 	if (pendingSize == 0) return out;
 	
 	// Copy terms < pendingSize
-	for (size_t i = 0; i < 12; i++) {
+	for (size_t i = 0; i < 11; i++) {
 		if (JACOBSTHAL[i] >= static_cast<int>(pendingSize)) break;
 		jacob.push_back(JACOBSTHAL[i]);
 	}
@@ -121,10 +121,6 @@ static std::vector<int> jacobsthalSeq(size_t pendingSize) {
 		out.push_back(j);
 	return (out);
 }
-
-// iterator insert_pos = _mainChain.begin();
-// while (insert_pos != _mainChain.end() && *insert_pos < partner)
-// 	insert_pos++;
 
 void PmergeMeVector::binaryInsert() {
 	// b1 <= a1, insert at front without binary search
