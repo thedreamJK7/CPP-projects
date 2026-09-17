@@ -5,6 +5,7 @@
 #include <vector>
 #include <exception>
 #include <sstream>
+#include <ctime>
 
 struct Pair {
 	int	small;
@@ -36,6 +37,11 @@ class PmergeMeVector {
 			}
 			std::cout << std::endl;
 		};
+		void	printPair() {
+			for (std::vector<Pair>::iterator it = _pairs.begin(); it != _pairs.end(); it++) {
+				std::cout << "(" << (*it).large << ", " << (*it).small << ")" << std::endl;
+			}	
+		}
 		
 	private:
 		// Data

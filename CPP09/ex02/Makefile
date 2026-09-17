@@ -2,7 +2,7 @@ NAME 		= PmergeMe
 CPP			= c++
 CPPFLAGS	= -g -Wall -Wextra -Werror -std=c++98
 RM 			= rm -rf
-SRC 		= main.cpp PmergeMeVector.cpp
+SRC 		= main.cpp ./src/PmergeMeVector.cpp ./src/PmergeMeDeque.cpp
 
 OBJ_DIR 		= ./obj
 OBJS = $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRC))
