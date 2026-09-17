@@ -95,7 +95,7 @@ void PmergeMeDeque::buildMainChain() {
 }
 
 /* STEP 4: merge insertion */
-static const int JACOBSTHAL[] = { 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731};
+static const int JACOBSTHAL[] = {3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731};
 
 static std::deque<int> jacobsthalSeq(size_t pendingSize) {
 	std::deque<int> out;
@@ -127,6 +127,8 @@ static std::deque<int> jacobsthalSeq(size_t pendingSize) {
 // 	insert_pos++;
 
 void PmergeMeDeque::binaryInsert() {
+	// b1 <= a1, insert at front without binary search
+	_mainChain.insert(_mainChain.begin(), _pairs[0].second);
 	std::deque<int> jacobSequence = jacobsthalSeq(_pairs.size());
 
 	for (iterator it = jacobSequence.begin(); jacobSequence.end() != it; it++) {
