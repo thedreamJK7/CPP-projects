@@ -44,13 +44,13 @@ class PmergeMeDeque {
 		void	makePair();
 		void	merge(iteratorP begin, iteratorP mid, iteratorP end);
 		void	mergeSort(iteratorP begin, iteratorP end);
+		void	binaryInsert();
 		void	buildMainChain();
-		
+
 
 	private:
 		deq		_nums;
 		deq		_mainChain;
-		deq		_unsorted;
 		deqP	_pairs;
 		int		_leftover;
 

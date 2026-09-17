@@ -63,7 +63,7 @@ namespace {
 		if (pendingSize == 0)
 			return insertedIndex;
 		int value = jacobsthal(index);
-		while (static_cast<int>(pendingSize) > value)
+		while (value < static_cast<int>(pendingSize))
 		{
 			jacobsequence.push_back(value);
 			index++;

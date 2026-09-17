@@ -24,6 +24,7 @@ void PmergeMeDeque::insertionSort() {
 	} else {
 		makePair(); // Step 1
 		buildMainChain(); // Step 3
+		binaryInsert(); // Step 4
 	}
 }
 
@@ -89,12 +90,42 @@ void PmergeMeDeque::buildMainChain() {
 	iteratorP it = _pairs.begin();
 	while (it != _pairs.end()) {
 		_mainChain.push_back(it->first);
-		_unsorted.push_back(it->second);
 		it++;
 	}
 }
 
 /* STEP 4: merge insertion */
+static const int JACOBSTHAL[] = { 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731};
 
+static std::deque<int> jacobsthalSeq(size_t pendingSize) {
+	std::deque<int> out;
+	std::deque<int> jacob;
+	if (pendingSize == 0) return out;
+	
+	// Copy terms < pendingSize
+	for (size_t i = 0; i < 12; i++) {
+		if (JACOBSTHAL[i] >= static_cast<int>(pendingSize)) break;
+		jacob.push_back(JACOBSTHAL[i]);
+	}
+
+	// expanding each into descending runs + tail
+	size_t last = 1;
+	for (size_t i = 0; i < jacob.size(); i++)
+	{
+		out.push_back(jacob[i]);
+		for (size_t j = jacob[i] - 1; last < j; j--)
+			out.push_back(j);
+		last = jacob[i];
+	}
+	for (size_t j = pendingSize; j > last; j--)
+		out.push_back(j);
+	return (out);
+}
+
+void PmergeMeDeque::binaryInsert() {
+	std::deque<int> jacobSequence = jacobsthalSeq(_pairs.size());
+
+	
+}
 
 
