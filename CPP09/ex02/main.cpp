@@ -3,7 +3,7 @@
 
 int main(int argc, char const *argv[])
 {
-	if (argc < 2) {
+	if (argc < 2 || argc > 3001) {
 		std::cout << "Error" << std::endl; 
 		return (1);
 	}
@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
 			clock_t start = clock();
 			PmergeMeVector vec(argv + 1);
 			vec.printBefore();
-			vec.sort();
+			vec.insertionSort();
 			vec.printAfter();
 			clock_t end = clock();
 			std::cout << "Time with std::vector: " << static_cast<double>(end - start) / 1000 << " millisec" << std::endl;
