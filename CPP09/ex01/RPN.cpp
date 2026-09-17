@@ -24,15 +24,15 @@ static bool isOperand(std::string& c) {
 static int executeOperand(std::string& token, int &a, int& b) {
 	long	res;
 	if (token == "+")
-		res = (long)a + b;
+		res = static_cast<long>(a) + b;
 	else if (token == "-")
-		res = (long)b - a;
+		res = static_cast<long>(b) - a;
 	else if (token == "*" )
-		res = (long)b * a;
+		res = static_cast<long>(b) * a;
 	else if (token == "/") {
 		if (a == 0)
 			throw RPN::Error();
-		res = (long)b / a;
+		res = static_cast<long>(b) / a;
 	}
 	if (res > std::numeric_limits<int>::max() 
 		|| res < std::numeric_limits<int>::min()) {
