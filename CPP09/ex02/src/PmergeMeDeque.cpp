@@ -113,7 +113,7 @@ static std::deque<int> jacobsthalSeq(size_t pendingSize) {
 	for (size_t i = 0; i < jacob.size(); i++)
 	{
 		out.push_back(jacob[i]);
-		for (size_t j = jacob[i] - 1; last < j; j--)
+		for (size_t j = jacob[i] - 1; last < j; --j)
 			out.push_back(j);
 		last = jacob[i];
 	}
@@ -122,10 +122,22 @@ static std::deque<int> jacobsthalSeq(size_t pendingSize) {
 	return (out);
 }
 
+// iterator insert_pos = _mainChain.begin();
+// while (insert_pos != _mainChain.end() && *insert_pos < partner)
+// 	insert_pos++;
+
 void PmergeMeDeque::binaryInsert() {
 	std::deque<int> jacobSequence = jacobsthalSeq(_pairs.size());
 
-	
+	for (iterator it = jacobSequence.begin(); jacobSequence.end() != it; it++) {
+		int partner = _pairs[*it - 1].second;
+		iterator search_end = std::lower_bound(_mainChain.begin(), _mainChain.end(), _pairs[*it - 1].first);
+		iterator insert_pos = std::lower_bound(_mainChain.begin(), search_end, partner);
+		_mainChain.insert(insert_pos, partner);
+	}
+	if (_leftover != -1)
+	{
+		iterator insert_lef = std::lower_bound(_mainChain.begin(), _mainChain.end(), _leftover);
+		_mainChain.insert(insert_lef, _leftover);
+	}
 }
-
-
