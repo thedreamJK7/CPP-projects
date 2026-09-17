@@ -7,6 +7,7 @@
 #include <stack>
 #include <cstdlib>
 #include <exception>
+#include <list>
 #include <limits>
 
 class RPN {

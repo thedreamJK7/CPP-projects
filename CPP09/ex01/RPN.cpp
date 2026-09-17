@@ -42,16 +42,15 @@ static int executeOperand(std::string& token, int &a, int& b) {
 }
 
 static bool	isDigit(std::string& c) {
-	if (c.size() == 1 && c >= "0" && c <= "9") {
+	if (c.size() == 1 && c >= "0" && c <= "9")
 		return true;
-	}
 	return false;
 }
 
 int RPN::evaluate(const std::string& str) {
 	std::string			token;
 	std::stringstream	ss(str);
-	std::stack<int>		stored;
+	std::stack<int, std::list<int>>	stored;
 
 	while (ss >> token) {
 		if (isOperand(token)) {

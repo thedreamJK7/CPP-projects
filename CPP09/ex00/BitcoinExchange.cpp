@@ -61,10 +61,8 @@ int		BitcoinExchange::maxDaysInMonth(int year, int month) const {
 static bool isDigit(std::string &date) {
 	for (int i = 0; i < 10; i++) {
         if (i == 4 || i == 7) continue;
-
-        if (!isdigit(date[i])) {
+        if (!isdigit(date[i]))
             return false;
-        }
     }
 	return true;
 }
