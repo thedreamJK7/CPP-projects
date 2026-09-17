@@ -1,5 +1,4 @@
-#include "./includes/PmergeMeVector.hpp"
-#include "./includes/PmergeMeDeque.hpp"
+#include "./includes/PmergeMe.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -9,26 +8,13 @@ int main(int argc, char const *argv[])
 	}
 	{
 		try {
-			clock_t start = clock();
-			PmergeMeVector vec(argv + 1);
+			PmergeMe< std::vector<int> > vec(argv + 1);
 			vec.printBefore();
-			vec.insertionSort();
-			vec.printAfter();
-			clock_t end = clock();
-			std::cout << "Time with std::vector: " << static_cast<double>(end - start) / 1000 << " millisec" << std::endl;
-		} catch(const std::exception& e) {
-			std::cerr << e.what() << std::endl;
-		}
-	}
-	{
-		try {
 			clock_t start = clock();
-			PmergeMeDeque deq(argv + 1);
-			deq.printBefore();
-			deq.insertionSort();
-			deq.printAfter();
+			vec.insertionSort();
 			clock_t end = clock();
-			std::cout << "Time with std::deque: " << static_cast<double>(end - start) / 1000 << " millisec" << std::endl;
+			std::cout << "Time: " << static_cast<double>(end - start) / 1000 << " millisec" << std::endl;
+			vec.printAfter();
 		} catch(const std::exception& e) {
 			std::cerr << e.what() << std::endl;
 		}
