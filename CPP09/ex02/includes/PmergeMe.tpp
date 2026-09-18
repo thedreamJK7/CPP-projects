@@ -93,7 +93,7 @@ void PmergeMe<Container>::binaryInsert() {
 	_mainChain.insert(_mainChain.begin(), _pairs[0].second);
 	std::vector<int> jacobSequence = jacobsthalSeq(_pairs.size());
 
-	for (iterator it = jacobSequence.begin(); jacobSequence.end() != it; it++) {
+	for (std::vector<int>::iterator it = jacobSequence.begin(); jacobSequence.end() != it; it++) {
 		int partner = _pairs[*it - 1].second;
 		iterator search_end = std::lower_bound(_mainChain.begin(), _mainChain.end(), _pairs[*it - 1].first);
 		iterator insert_pos = std::lower_bound(_mainChain.begin(), search_end, partner);

@@ -22,7 +22,7 @@ check() {
     else
         local N=$(echo $INPUT | wc -w)
         local EXP=$(echo $INPUT | tr ' ' '\n' | sort -n | tr '\n' ' ' | sed 's/ $//')
-        local OUT=$(tail -1 /tmp/out.txt | sed 's/[[:space:]]*$//')
+        local OUT=$(sed -n '2p' /tmp/out.txt | sed 's/[[:space:]]*$//')
         if [ "$OUT" = "$EXP" ]; then
             echo "[OK]  $DESC"
             PASS=$((PASS+1))
@@ -78,7 +78,7 @@ for i in $(seq 1 100); do
     INPUT=$(seq 1 $n | sort -R | tr '\n' ' ')
     ./PmergeMe $INPUT > /tmp/out.txt 2>&1
     EXP=$(seq 1 $n | tr '\n' ' ' | sed 's/ $//')
-    OUT=$(tail -1 /tmp/out.txt | sed 's/[[:space:]]*$//')
+    OUT=$(sed -n '2p' /tmp/out.txt | sed 's/[[:space:]]*$//')
     if [ "$OUT" = "$EXP" ]; then
         S_PASS=$((S_PASS+1))
     else
