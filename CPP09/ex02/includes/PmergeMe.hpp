@@ -5,6 +5,7 @@
 #include <exception>
 #include <sstream>
 #include <deque>
+#include <algorithm>
 #include "jacobSequence.hpp"
 
 template <typename Container> class PmergeMe {

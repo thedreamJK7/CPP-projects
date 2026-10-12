@@ -77,7 +77,8 @@ void PmergeMe<Container>::mergeSort(PairVecIt begin, PairVecIt end) {
 template <typename Container>/* STEP 3: Set the sorted sequence */
 void PmergeMe<Container>::buildMainChain() {
 
-	mergeSort(_pairs.begin(), _pairs.end());
+	// mergeSort(_pairs.begin(), _pairs.end());
+	merge(_pairs.begin(), _pairs.end());
 
 	PairVecIt it = _pairs.begin();
 	while (it != _pairs.end()) {
@@ -85,6 +86,8 @@ void PmergeMe<Container>::buildMainChain() {
 		it++;
 	}
 }
+
+
 
 /* STEP 4: merge insertion */
 template <typename Container>
