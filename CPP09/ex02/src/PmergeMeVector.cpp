@@ -51,7 +51,5 @@ std::vector<t_num> merge_insertion_sort(std::vector<t_num>& nums) {
 		}
 		pairs.push_back(s_pair);
 	}
-
-	
 }
 
